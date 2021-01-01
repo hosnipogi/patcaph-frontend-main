@@ -1,0 +1,194 @@
+/* @font-face {
+    font-family: "Balto";
+    src: url("./Balto/Balto-Light.eot");
+    src: local("Balto Light"), local("Balto-Light"),
+        url("./Balto/Balto-Light.eot?#iefix") format("embedded-opentype"),
+        url("./Balto/Balto-Light.woff2") format("woff2"),
+        url("./Balto/Balto-Light.woff") format("woff"),
+        url("./Balto/Balto-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+} */
+
+/* @font-face {
+    font-family: "Balto";
+    src: url("./Balto/Balto-Thin.eot");
+    src: local("Balto Thin"), local("Balto-Thin"),
+        url("./Balto/Balto-Thin.eot?#iefix") format("embedded-opentype"),
+        url("./Balto/Balto-Thin.woff2") format("woff2"),
+        url("./Balto/Balto-Thin.woff") format("woff"),
+        url("./Balto/Balto-Thin.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
+} */
+
+@font-face {
+    font-family: "Balto";
+    src: url("./Balto/Balto-Book.eot");
+    src: local("Balto Book"), local("Balto-Book"),
+        url("./Balto/Balto-Book.eot?#iefix") format("embedded-opentype"),
+        url("./Balto/Balto-Book.woff2") format("woff2"),
+        url("./Balto/Balto-Book.woff") format("woff"),
+        url("./Balto/Balto-Book.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* @font-face {
+    font-family: "Balto";
+    src: url("./Balto/Balto-Ultra.eot");
+    src: local("Balto Ultra"), local("Balto-Ultra"),
+        url("./Balto/Balto-Ultra.eot?#iefix") format("embedded-opentype"),
+        url("./Balto/Balto-Ultra.woff2") format("woff2"),
+        url("./Balto/Balto-Ultra.woff") format("woff"),
+        url("./Balto/Balto-Ultra.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+} */
+
+@font-face {
+    font-family: "Balto";
+    src: url("./Balto/Balto-Bold.eot");
+    src: local("Balto Bold"), local("Balto-Bold"),
+        url("./Balto/Balto-Bold.eot?#iefix") format("embedded-opentype"),
+        url("./Balto/Balto-Bold.woff2") format("woff2"),
+        url("./Balto/Balto-Bold.woff") format("woff"),
+        url("./Balto/Balto-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* @font-face {
+    font-family: "Balto";
+    src: url("./Balto/Balto-SuperItalic.eot");
+    src: local("Balto Super Italic"), local("Balto-SuperItalic"),
+        url("./Balto/Balto-SuperItalic.eot?#iefix") format("embedded-opentype"),
+        url("./Balto/Balto-SuperItalic.woff2") format("woff2"),
+        url("./Balto/Balto-SuperItalic.woff") format("woff"),
+        url("./Balto/Balto-SuperItalic.ttf") format("truetype");
+    font-weight: 800;
+    font-style: italic;
+} */
+
+/* @font-face {
+    font-family: "Balto";
+    src: url("./Balto/Balto-MediumItalic.eot");
+    src: local("Balto Medium Italic"), local("Balto-MediumItalic"),
+        url("./Balto/Balto-MediumItalic.eot?#iefix") format("embedded-opentype"),
+        url("./Balto/Balto-MediumItalic.woff2") format("woff2"),
+        url("./Balto/Balto-MediumItalic.woff") format("woff"),
+        url("./Balto/Balto-MediumItalic.ttf") format("truetype");
+    font-weight: 500;
+    font-style: italic;
+} */
+
+/* @font-face {
+    font-family: "Balto";
+    src: url("./Balto/Balto-LightItalic.eot");
+    src: local("Balto Light Italic"), local("Balto-LightItalic"),
+        url("./Balto/Balto-LightItalic.eot?#iefix")
+            format("embedded-opentype"),
+        url("./Balto/Balto-LightItalic.woff2") format("woff2"),
+        url("./Balto/Balto-LightItalic.woff") format("woff"),
+        url("./Balto/Balto-LightItalic.ttf") format("truetype");
+    font-weight: 300;
+    font-style: italic;
+} */
+
+/* @font-face {
+    font-family: "Balto";
+    src: url("./Balto/Balto-UltraItalic.eot");
+    src: local("Balto Ultra Italic"), local("Balto-UltraItalic"),
+        url("./Balto/Balto-UltraItalic.eot?#iefix")
+            format("embedded-opentype"),
+        url("./Balto/Balto-UltraItalic.woff2") format("woff2"),
+        url("./Balto/Balto-UltraItalic.woff") format("woff"),
+        url("./Balto/Balto-UltraItalic.ttf") format("truetype");
+    font-weight: 900;
+    font-style: italic;
+} */
+
+@font-face {
+    font-family: "Balto";
+    src: url("./Balto/Balto-BoldItalic.eot");
+    src: local("Balto Bold Italic"), local("Balto-BoldItalic"),
+        url("./Balto/Balto-BoldItalic.eot?#iefix") format("embedded-opentype"),
+        url("./Balto/Balto-BoldItalic.woff2") format("woff2"),
+        url("./Balto/Balto-BoldItalic.woff") format("woff"),
+        url("./Balto/Balto-BoldItalic.ttf") format("truetype");
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* @font-face {
+    font-family: "Balto";
+    src: url("./Balto/Balto-ThinItalic.eot");
+    src: local("Balto Thin Italic"), local("Balto-ThinItalic"),
+        url("./Balto/Balto-ThinItalic.eot?#iefix")
+            format("embedded-opentype"),
+        url("./Balto/Balto-ThinItalic.woff2") format("woff2"),
+        url("./Balto/Balto-ThinItalic.woff") format("woff"),
+        url("./Balto/Balto-ThinItalic.ttf") format("truetype");
+    font-weight: 100;
+    font-style: italic;
+} */
+
+@font-face {
+    font-family: "Balto";
+    src: url("./Balto/Balto-Medium.eot");
+    src: local("Balto Medium"), local("Balto-Medium"),
+        url("./Balto/Balto-Medium.eot?#iefix") format("embedded-opentype"),
+        url("./Balto/Balto-Medium.woff2") format("woff2"),
+        url("./Balto/Balto-Medium.woff") format("woff"),
+        url("./Balto/Balto-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* @font-face {
+    font-family: "Balto";
+    src: url("./Balto/Balto-BlackItalic.eot");
+    src: local("Balto Black Italic"), local("Balto-BlackItalic"),
+        url("./Balto/Balto-BlackItalic.eot?#iefix") format("embedded-opentype"),
+        url("./Balto/Balto-BlackItalic.woff2") format("woff2"),
+        url("./Balto/Balto-BlackItalic.woff") format("woff"),
+        url("./Balto/Balto-BlackItalic.ttf") format("truetype");
+    font-weight: 900;
+    font-style: italic;
+} */
+
+@font-face {
+    font-family: "Balto";
+    src: url("./Balto/Balto-Black.eot");
+    src: local("Balto Black"), local("Balto-Black"),
+        url("./Balto/Balto-Black.eot?#iefix") format("embedded-opentype"),
+        url("./Balto/Balto-Black.woff2") format("woff2"),
+        url("./Balto/Balto-Black.woff") format("woff"),
+        url("./Balto/Balto-Black.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Balto";
+    src: url("./Balto/Balto-BookItalic.eot");
+    src: local("Balto Book Italic"), local("Balto-BookItalic"),
+        url("./Balto/Balto-BookItalic.eot?#iefix") format("embedded-opentype"),
+        url("./Balto/Balto-BookItalic.woff2") format("woff2"),
+        url("./Balto/Balto-BookItalic.woff") format("woff"),
+        url("./Balto/Balto-BookItalic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* @font-face {
+    font-family: "Balto";
+    src: url("./Balto/Balto-Super.eot");
+    src: local("Balto Super"), local("Balto-Super"),
+        url("./Balto/Balto-Super.eot?#iefix") format("embedded-opentype"),
+        url("./Balto/Balto-Super.woff2") format("woff2"),
+        url("./Balto/Balto-Super.woff") format("woff"),
+        url("./Balto/Balto-Super.ttf") format("truetype");
+    font-weight: 800;
+    font-style: normal;
+} */

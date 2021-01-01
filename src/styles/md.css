@@ -1,0 +1,11 @@
+div.post-content > p {
+  margin: 0.625rem auto 1rem;
+}
+
+div.post-content > hr {
+  margin-bottom: 1.4rem;
+}
+
+div.post-content > h2 {
+  margin-bottom: 2.5rem;
+}
