@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-const APP_URL = process.env.GATSBY_APP_URL || "http://localhost:8000"
+const APP_URL = process.env.GATSBY_APP_URL || "https://api.patca.ph"
 export const [PROTOCOL, DOMAIN] = APP_URL.split("://")
 export const API_BASE_URL = `${PROTOCOL}://${DOMAIN}/v1`
 export const SANCTUM = `${APP_URL}/sanctum/csrf-cookie`
