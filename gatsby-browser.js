@@ -7,9 +7,15 @@
 // import Layout from "./src/components/layout"
 import React from "react"
 import Layout from "./src/components/layout"
+
+window.axios = require("axios")
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest"
+window.axios.defaults.withCredentials = true
+window.axios.get(SANCTUM).then(console.log).catch(console.log)
+
 import { UserProvider } from "./src/contexts/UserContext"
 
-import { DOMAIN } from "./src/lib/config/URLs"
+import { SANCTUM } from "./src/lib/config/URLs"
 import { Windmill } from "@windmill/react-ui"
 import "./src/styles/main.css"
 
@@ -24,10 +30,3 @@ export const wrapRootElement = ({ element }) => {
     </UserProvider>
   )
 }
-
-window.axios = require("axios")
-
-window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest"
-window.axios.defaults.withCredentials = true
-window.axios.defaults.baseURL = DOMAIN
-window.axios.get("/sanctum/csrf-cookie").catch(console.log)

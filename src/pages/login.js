@@ -6,7 +6,7 @@ import { Formik, Form } from "formik"
 import FormControl from "../components/elements/forms/FormControl"
 import Submit from "../components/elements/forms/Submit"
 import Api from "../lib/services/api"
-import { DASHBOARD, DOMAIN, LOGIN } from "../lib/config/URLs"
+import { DASHBOARD, LOGIN } from "../lib/config/URLs"
 
 const initialValues = {
   email: "",
@@ -59,10 +59,7 @@ export default function Login() {
   useEffect(() => {
     if (state.user !== null)
       state.user.hasProfile
-        ? setTimeout(
-            () => window.location.replace(`${DOMAIN}/${DASHBOARD}`),
-            2000
-          )
+        ? setTimeout(() => window.location.replace(DASHBOARD), 2000)
         : setTimeout(() => navigate("/profile"), 4000)
     return () => {}
   }, [state.user])

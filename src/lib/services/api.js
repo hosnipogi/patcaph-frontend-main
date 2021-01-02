@@ -1,5 +1,6 @@
 import axios from "axios"
 import { AXIOS_CONFIG as CONFIG } from "../config/axios.js"
+import { SANCTUM } from "../config/URLs"
 
 class API {
   constructor({
@@ -29,26 +30,36 @@ class API {
 
   fetch() {
     return new Promise((resolve, reject) => {
-      this.api[this.method](this.url, this.data)
-        .then(response => {
-          if (response.status === 200 || response.status === 204) {
-            this.submitProps?.setSubmitting(false)
-            this.setResponse?.({
-              success: true,
-              message: this.messageOnSuccess,
+      this.api["get"](SANCTUM)
+        .then(sanctum => {
+          console.log({ sanctum })
+          this.api[this.method](this.url, this.data)
+            .then(response => {
+              console.log({ response })
+              if (response.status === 200 || response.status === 204) {
+                this.submitProps?.setSubmitting(false)
+                this.setResponse?.({
+                  success: true,
+                  message: this.messageOnSuccess,
+                })
+                resolve(response)
+              } else {
+                throw Error("Invalid response")
+              }
             })
-            resolve(response)
-          } else {
-            throw Error("Invalid response")
-          }
+            .catch(error => {
+              const err =
+                error.response !== undefined ? error.response.data : error
+              this.submitProps?.setSubmitting(false)
+              this.setResponse?.({
+                success: false,
+                message: err.message,
+              })
+              reject(err)
+            })
         })
-        .catch(error => {
-          const err = error.response !== undefined ? error.response.data : error
-          this.submitProps?.setSubmitting(false)
-          this.setResponse?.({
-            success: false,
-            message: err.message,
-          })
+        .catch(err => {
+          console.log({ sanctumErr: err })
           reject(err)
         })
     })

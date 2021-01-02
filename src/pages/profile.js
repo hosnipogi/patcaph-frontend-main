@@ -9,7 +9,11 @@ import {
 
 import Api from "../lib/services/api"
 import useAxios from "../lib/hooks/useAxios"
-import { CURRENT_USER_PROFILE, PROFILE_FIELDS } from "../lib/config/URLs"
+import {
+  CURRENT_USER_PROFILE,
+  DASHBOARD,
+  PROFILE_FIELDS,
+} from "../lib/config/URLs"
 import Loading from "../components/loading"
 
 import Nav from "../components/profile/nav"
@@ -75,7 +79,7 @@ export default function () {
 
     try {
       await api.fetch()
-      setTimeout(() => (window.location.href = "/dashboard"), 3000)
+      setTimeout(() => (window.location.href = DASHBOARD), 3000)
     } catch (e) {
       api.abort()
       console.log(e)

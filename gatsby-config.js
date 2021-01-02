@@ -1,11 +1,20 @@
 /* eslint-disable no-undef */
 const routes = require("./routes")
+const fs = require("fs")
+
+if (fs.existsSync("../backend/.env")) {
+  const path = require("path")
+  require("dotenv").config({
+    path: `${path.resolve(`${process.cwd()}/../backend/.env`)}`,
+  })
+}
 
 module.exports = {
   siteMetadata: {
     title: `PATCA ph`,
     description: `Offical website of the Philippine Air Traffic Controllers' Association`,
     author: `Hosni Bona <hosnibona@gmail.com>`,
+    siteUrl: process.env.GATSBY_APP_URL || `https://patca.ph`,
     social: [
       {
         name: `facebook`,
@@ -18,7 +27,7 @@ module.exports = {
     ],
     routes,
   },
-  // assetPrefix: `/main`,
+  assetPrefix: `/main`,
   plugins: [
     // {
     //   resolve: `gatsby-plugin-htaccess`,

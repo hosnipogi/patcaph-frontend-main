@@ -7,11 +7,11 @@ import { LOGOUT } from "../../lib/config/URLs"
 import { Nav as NavWrapper } from "./elements"
 import Logo from "../logo"
 import { Transition, Backdrop } from "@windmill/react-ui"
-
+import { DASHBOARD } from "../../lib/config/URLs"
 //icons
 
 import { MenuIcon } from "../icons"
-import { FiLogIn } from "react-icons/fi"
+import { FiLogIn, FiLogOut } from "react-icons/fi"
 import { IoIosAirplane } from "react-icons/io"
 import { RiArticleLine } from "react-icons/ri"
 import { GrGallery } from "react-icons/gr"
@@ -128,8 +128,9 @@ const Nav = ({ path, routes }) => {
                     {user.hasProfile ? (
                       <a
                         className="nav__main__desktop__user__submenu__link"
-                        href="/dashboard"
+                        href={DASHBOARD}
                       >
+                        <FiLogIn className="nav__main__desktop__user__submenu__link__icon" />
                         <span className="nav__main__desktop__user__submenu__link__text">
                           Dashboard
                         </span>
@@ -139,6 +140,7 @@ const Nav = ({ path, routes }) => {
                         className="nav__main__desktop__user__submenu__link"
                         to="/profile"
                       >
+                        <FiLogIn className="nav__main__desktop__user__submenu__link__icon" />
                         <span className="nav__main__desktop__user__submenu__link__text">
                           Profile
                         </span>
@@ -168,6 +170,7 @@ const Nav = ({ path, routes }) => {
                           .catch(console.log)
                       }}
                     >
+                      <FiLogOut className="nav__main__desktop__user__submenu__link__icon" />
                       <span className="nav__main__desktop__user__submenu__link__text">
                         Logout
                       </span>
