@@ -74,7 +74,7 @@ export default function () {
       data: values,
       submitProps,
       setResponse,
-      msgOnSuccess: "Success, redirecting to dashboard",
+      messageOnSuccess: "Success, redirecting to dashboard",
     })
 
     try {

@@ -11,10 +11,10 @@ if (fs.existsSync("../backend/.env")) {
 
 module.exports = {
   siteMetadata: {
-    title: `PATCA ph`,
+    title: `Philippine Air Traffic Controllers' Association`,
     description: `Offical website of the Philippine Air Traffic Controllers' Association`,
     author: `Hosni Bona <hosnibona@gmail.com>`,
-    siteUrl: process.env.GATSBY_APP_URL || `https://patca.ph`,
+    siteUrl: process.env.GATSBY_HOME_URL || `https://patca.ph`,
     social: [
       {
         name: `facebook`,
@@ -29,15 +29,6 @@ module.exports = {
   },
   assetPrefix: `/main`,
   plugins: [
-    // {
-    //   resolve: `gatsby-plugin-htaccess`,
-    //   options: {
-    //     RewriteBase: true,
-    //     https: false,
-    //     SymLinksIfOwnerMatch: true,
-    //     host: "localhost",
-    //   },
-    // },
     `gatsby-plugin-eslint`,
     `gatsby-plugin-react-helmet`,
     {

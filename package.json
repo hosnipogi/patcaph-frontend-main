@@ -14,7 +14,6 @@
     "gatsby-background-image": "next",
     "gatsby-image": "next",
     "gatsby-image-background-slider": "next",
-    "gatsby-plugin-htaccess": "^1.4.0",
     "gatsby-plugin-manifest": "^2.8.0",
     "gatsby-plugin-offline": "next",
     "gatsby-plugin-postcss": "next",
