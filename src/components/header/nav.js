@@ -16,7 +16,7 @@ import { IoIosAirplane } from "react-icons/io"
 import { RiArticleLine } from "react-icons/ri"
 import { GrGallery } from "react-icons/gr"
 import { FaRegCalendarAlt } from "react-icons/fa"
-import { FaPhone } from "react-icons/fa"
+import { MdHeadsetMic } from "react-icons/md"
 import { VscOrganization } from "react-icons/vsc"
 
 const generateIcon = route => {
@@ -36,7 +36,7 @@ const generateIcon = route => {
         <VscOrganization className="nav__main__desktop__routes__links__icon" />
       )
     case "/contact":
-      return <FaPhone className="nav__main__desktop__routes__links__icon" />
+      return <MdHeadsetMic className="nav__main__desktop__routes__links__icon" />
     default:
       return
   }

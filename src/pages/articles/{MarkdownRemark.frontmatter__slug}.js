@@ -11,13 +11,15 @@ import {
 import { HOME_URL } from "../../lib/config/URLs"
 import BackgroundImage from "gatsby-background-image"
 import "../../styles/md.css"
+import SEO from "../../components/seo"
 
 export default function Template({ data }) {
   const { article, articles } = data
-  const { frontmatter, html } = article
+  const { frontmatter, html, excerpt } = article
 
   return (
     <>
+      <SEO title={frontmatter.title} description={excerpt} />
       <div className="container w-11/12 py-4 mx-auto lg:py-8">
         {frontmatter.featuredImage && (
           <BackgroundImage
@@ -95,15 +97,14 @@ export default function Template({ data }) {
 Template.propTypes = {
   data: PropTypes.shape({
     article: PropTypes.shape({
+      excerpt: PropTypes.any,
       frontmatter: PropTypes.shape({
         author: PropTypes.any,
         date: PropTypes.any,
         featuredImage: PropTypes.shape({
           src: PropTypes.shape({
             childImageSharp: PropTypes.shape({
-              fluid: PropTypes.shape({
-                src: PropTypes.any,
-              }),
+              fluid: PropTypes.any,
             }),
           }),
         }),
@@ -112,7 +113,11 @@ Template.propTypes = {
       }),
       html: PropTypes.any,
     }),
-    articles: PropTypes.any,
+    articles: PropTypes.shape({
+      edges: PropTypes.shape({
+        map: PropTypes.func,
+      }),
+    }),
   }),
 }
 

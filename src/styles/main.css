@@ -125,6 +125,32 @@ label {
   left: 0;
 }
 
+/** React Slick **/
+
+.customDots {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.customDots > li {
+  width: 100%;
+  margin: 0 2px;
+}
+
+.customDots > li.slick-active > div {
+  background-color: red;
+  opacity: 1;
+}
+
+/** NProgress bar **/
+
+#nprogress .bar {
+  height: 3px !important;
+}
+
 /** DatePicker Input library **/
 .react-datepicker-wrapper {
   width: 100%;

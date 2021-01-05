@@ -3,34 +3,41 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 import { Card, CardBody } from "@windmill/react-ui"
+import SEO from "../../components/seo"
 
 const Articles = ({ data }) => (
-  <div className="lg:flex">
-    {data.articles.nodes.map(article => (
-      <div key={article.childMarkdownRemark.frontmatter.slug}>
-        <Link to={`/articles${article.childMarkdownRemark.frontmatter.slug}`}>
-          <Card colored className="mb-4 bg-gray-100 shadow-md lg:mx-2">
-            {article.childMarkdownRemark.frontmatter?.featuredImage && (
-              <Img
-                fluid={
-                  article.childMarkdownRemark.frontmatter.featuredImage.src
-                    .childImageSharp.fluid
-                }
-                className="object-cover"
-              />
-            )}
-            <CardBody>
-              <h6>{article.childMarkdownRemark.frontmatter.date}</h6>
-              <h4 className="mb-4 tracking-normal normal-case">
-                {article.childMarkdownRemark.frontmatter.title}
-              </h4>
-              <p>{article.childMarkdownRemark.excerpt}</p>
-            </CardBody>
-          </Card>
-        </Link>
-      </div>
-    ))}
-  </div>
+  <>
+    <SEO title="Articles" />
+    <div className="lg:flex">
+      {data.articles.nodes.map(article => (
+        <div key={article.childMarkdownRemark.frontmatter.slug}>
+          <Link to={`/articles${article.childMarkdownRemark.frontmatter.slug}`}>
+            <Card
+              colored
+              className="mb-4 bg-gray-100 border shadow-sm hover:shadow-md lg:mx-2"
+            >
+              {article.childMarkdownRemark.frontmatter?.featuredImage && (
+                <Img
+                  fluid={
+                    article.childMarkdownRemark.frontmatter.featuredImage.src
+                      .childImageSharp.fluid
+                  }
+                  className="object-cover"
+                />
+              )}
+              <CardBody>
+                <h6>{article.childMarkdownRemark.frontmatter.date}</h6>
+                <h4 className="mb-4 tracking-normal normal-case">
+                  {article.childMarkdownRemark.frontmatter.title}
+                </h4>
+                <p>{article.childMarkdownRemark.excerpt}</p>
+              </CardBody>
+            </Card>
+          </Link>
+        </div>
+      ))}
+    </div>
+  </>
 )
 
 Articles.propTypes = {

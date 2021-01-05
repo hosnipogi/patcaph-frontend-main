@@ -65,6 +65,16 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        color: `#3498db`,
+        showSpinner: false,
+        minimum: 0.2,
+        speed: 500,
+        trickleSpeed: 80,
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

@@ -1,22 +1,27 @@
+/* eslint-disable react/display-name */
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import { Aerodrome } from "./elements"
-
-const sliderSettings = {
-  dots: true,
-  infinite: true,
-  speed: 800,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  fade: true,
-  arrows: false,
-}
+import { Aerodrome, Dots, NextArrow, PrevArrow } from "./elements"
 
 const index = () => {
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 800,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    fade: true,
+    lazyLoad: true,
+    dotsClass: "customDots",
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    appendDots: dots => <ul>{dots}</ul>,
+    customPaging: i => <Dots i={i} />,
+  }
   const { acc, radar, rpllTower, towerToned } = useStaticQuery(graphql`
     {
       towerToned: file(
@@ -53,10 +58,13 @@ const index = () => {
   `)
 
   return (
-    <section id="whatwedo">
+    <section
+      id="whatwedo"
+      // className="w-11/12 mx-auto bg-gray-300 hover:bg-gray-500"
+    >
       <Slider {...sliderSettings}>
         <BackgroundImage Tag="section" fluid={towerToned.childImageSharp.fluid}>
-          <div className="container flex flex-col items-center justify-center w-11/12 mx-auto h-screen-90">
+          <div className="container flex flex-col items-center justify-center w-11/12 mx-auto h-screen-80">
             <h2 className="text-white">What We Do</h2>
             <div className="text-center text-white lg:w-6/12">
               <p className="my-10">
@@ -64,33 +72,6 @@ const index = () => {
                 Authority of the Philippines. Our main objective is to provide
                 air traffic control service.
               </p>
-              {/* <p>
-              The Air Traffic Service is one of the two (2) Services under the
-              Civil Aviation Authority of the Philippines mandated to do the
-              following:
-            </p>
-            <ul>
-              <li>
-                Provision and management of Air Traffic Services in accordance
-                with established national and ICAO standards and recommended
-                practices.
-              </li>
-              <li>
-                Administration and implementation of operational plans and
-                programs.
-              </li>
-              <li>
-                Establishment and proper utilization of controlled and navigable
-                airspace within the Manila Flight Information Region.
-              </li>
-              <li>
-                Development of ATS rules, regulations, procedures, standards and
-                policies.
-              </li>
-              <li>
-                Provision of training and career development of ATS personnel.
-              </li>
-            </ul> */}
               <p>
                 Air traffic control service is a service provided for the
                 purpose of:
@@ -115,11 +96,27 @@ const index = () => {
           </div>
         </BackgroundImage>
 
-        <Aerodrome img={rpllTower.childImageSharp.fluid} />
+        <Aerodrome
+          img={rpllTower.childImageSharp.fluid}
+          html={`<h2>Aerodrome Control Service</h2>
+        <p>
+          Air traffic control services for aerodrome traffic. The service is
+          provided by an aerodrome control tower. The task of providing
+          specified services on the apron (e.g., apron management service) may
+          be assigned to an aerodrome control tower or to a separate unit.
+        </p>
+        <p>
+          The <strong>Aerodrome Control Tower</strong> is a unit established to
+          provide air traffic control service to aerodrome traffic. The tower is
+          responsible for issuing information and clearances to aircraft under
+          its control to achieve a safe, orderly, and expeditious flow of air
+          traffic
+        </p>`}
+        />
 
         <BackgroundImage Tag="section" fluid={radar.childImageSharp.fluid}>
           <div className="container w-11/12 mx-auto">
-            <div className="pt-32 text-white lg:w-1/2 h-screen-90">
+            <div className="pt-32 text-white lg:w-1/2 h-screen-80">
               <h2 className="text-white ">Approach Control Service</h2>
               <p className="mt-10">
                 Air traffic control service for arriving or departing controlled
@@ -141,7 +138,7 @@ const index = () => {
         </BackgroundImage>
 
         <BackgroundImage Tag="section" fluid={acc.childImageSharp.fluid}>
-          <div className="container w-11/12 pt-48 mx-auto h-screen-90 ">
+          <div className="container w-11/12 pt-48 mx-auto h-screen-80 ">
             <div className="grid-cols-2 text-white lg:text-right lg:grid">
               <div></div>
               <div>

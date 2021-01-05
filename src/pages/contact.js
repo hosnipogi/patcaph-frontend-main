@@ -6,6 +6,7 @@ import FormControl from "../components/elements/forms/FormControl"
 import Submit from "../components/elements/forms/Submit"
 import Api from "../lib/services/api"
 import { CONTACT } from "../lib/config/URLs"
+import SEO from "../components/seo"
 
 const initialValues = {
   name: "",
@@ -41,71 +42,74 @@ const contactUs = () => {
     }
   }
   return (
-    <div className="grid-cols-7 gap-5 lg:grid">
-      <div className="col-span-4">
-        {!response.success ? (
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={handleSubmit}
-          >
-            {formik => {
-              return (
-                <Form>
-                  <FormControl
-                    control="input"
-                    type="text"
-                    name="name"
-                    label="Name"
-                    formik={formik}
-                  />
-                  <FormControl
-                    control="input"
-                    type="email"
-                    name="email"
-                    placeholder="*"
-                    label="Email"
-                    formik={formik}
-                  />
-                  <FormControl
-                    control="input"
-                    type="text"
-                    name="subject"
-                    label="Subject"
-                    formik={formik}
-                  />
-                  <FormControl
-                    control="textarea"
-                    name="message"
-                    placeholder="*"
-                    label="Message"
-                    formik={formik}
-                    rows="8"
-                  />
-                  <Submit
-                    label="Submit"
-                    disabled={!formik.isValid}
-                    isSubmitting={formik.isSubmitting}
-                  />
-                </Form>
-              )
-            }}
-          </Formik>
-        ) : (
-          <p>{response.message}</p>
-        )}
-      </div>
-      <div className="flex flex-col col-span-3 text-left">
-        <div className="w-full mb-2 lg:w-4/5">
-          {/* <img src={Map} alt="PATCA Address" loading="lazy" /> */}
+    <>
+      <SEO title="Contact Us" />
+      <div className="grid-cols-7 gap-5 lg:grid">
+        <div className="col-span-4">
+          {!response.success ? (
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={handleSubmit}
+            >
+              {formik => {
+                return (
+                  <Form>
+                    <FormControl
+                      control="input"
+                      type="text"
+                      name="name"
+                      label="Name"
+                      formik={formik}
+                    />
+                    <FormControl
+                      control="input"
+                      type="email"
+                      name="email"
+                      placeholder="*"
+                      label="Email"
+                      formik={formik}
+                    />
+                    <FormControl
+                      control="input"
+                      type="text"
+                      name="subject"
+                      label="Subject"
+                      formik={formik}
+                    />
+                    <FormControl
+                      control="textarea"
+                      name="message"
+                      placeholder="*"
+                      label="Message"
+                      formik={formik}
+                      rows="8"
+                    />
+                    <Submit
+                      label="Submit"
+                      disabled={!formik.isValid}
+                      isSubmitting={formik.isSubmitting}
+                    />
+                  </Form>
+                )
+              }}
+            </Formik>
+          ) : (
+            <p>{response.message}</p>
+          )}
         </div>
-        <h5>Philippine Air Traffic Conrollers&apos; Association</h5>
-        <p>EEI Office, Civil Aviation Authority of the Philippines</p>
-        <p>1300 Pasay City</p>
-        <p>+63 912 456 7890</p>
-        <p>contact@patca.ph</p>
+        <div className="flex flex-col col-span-3 text-left">
+          <div className="w-full mb-2 lg:w-4/5">
+            {/* <img src={Map} alt="PATCA Address" loading="lazy" /> */}
+          </div>
+          <h5>Philippine Air Traffic Conrollers&apos; Association</h5>
+          <p>EEI Office, Civil Aviation Authority of the Philippines</p>
+          <p>1300 Pasay City</p>
+          <p>+63 912 456 7890</p>
+          <p>contact@patca.ph</p>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

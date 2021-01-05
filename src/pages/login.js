@@ -7,6 +7,7 @@ import FormControl from "../components/elements/forms/FormControl"
 import Submit from "../components/elements/forms/Submit"
 import Api from "../lib/services/api"
 import { DASHBOARD, LOGIN } from "../lib/config/URLs"
+import SEO from "../components/seo"
 
 const initialValues = {
   email: "",
@@ -64,63 +65,69 @@ export default function Login() {
   }, [state.user])
 
   return (
-    <div className="w-full pt-10 pb-64 mx-auto md:w-3/4 lg:w-2/5 lg:mx-0">
-      {state.user ? (
-        <p className="block w-full p-4 mb-4 text-green-700 bg-green-100 border-2 border-green-300 rounded-lg hover:border-gray-400">
-          Logged in.{" "}
-          {state.user.hasProfile
-            ? "Redirecting to dashboard."
-            : "Please complete profile"}
-        </p>
-      ) : (
-        <>
-          {" "}
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={handleSubmit}
-          >
-            {formik => {
-              return (
-                <Form>
-                  <FormControl
-                    control="input"
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    formik={formik}
-                  />
-                  <FormControl
-                    control="input"
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    formik={formik}
-                  />
-                  <Submit
-                    label="Login &rarr;"
-                    disabled={!formik.isValid}
-                    isSubmitting={formik.isSubmitting}
-                  />
-                </Form>
-              )
-            }}
-          </Formik>
-          <Link
-            to="/"
-            className="block my-3 text-sm text-left text-blue-600 hover:underline"
-          >
-            Forgot your password?
-          </Link>
-          <hr className="my-5 shadow-" />
-          <p className="text-sm text-left">
-            Not a PATCA member?
-            <Link to="/register" className="ml-1 text-blue-600 hover:underline">
-              Register Here
-            </Link>
+    <>
+      <SEO title="Login" />
+      <div className="w-full pt-10 pb-64 mx-auto md:w-3/4 lg:w-2/5 lg:mx-0">
+        {state.user ? (
+          <p className="block w-full p-4 mb-4 text-green-700 bg-green-100 border-2 border-green-300 rounded-lg hover:border-gray-400">
+            Logged in.{" "}
+            {state.user.hasProfile
+              ? "Redirecting to dashboard."
+              : "Please complete profile"}
           </p>
-        </>
-      )}
-    </div>
+        ) : (
+          <>
+            {" "}
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={handleSubmit}
+            >
+              {formik => {
+                return (
+                  <Form>
+                    <FormControl
+                      control="input"
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      formik={formik}
+                    />
+                    <FormControl
+                      control="input"
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      formik={formik}
+                    />
+                    <Submit
+                      label="Login &rarr;"
+                      disabled={!formik.isValid}
+                      isSubmitting={formik.isSubmitting}
+                    />
+                  </Form>
+                )
+              }}
+            </Formik>
+            <Link
+              to="/"
+              className="block my-3 text-sm text-left text-blue-600 hover:underline"
+            >
+              Forgot your password?
+            </Link>
+            <hr className="my-5 shadow-" />
+            <p className="text-sm text-left">
+              Not a PATCA member?
+              <Link
+                to="/register"
+                className="ml-1 text-blue-600 hover:underline"
+              >
+                Register Here
+              </Link>
+            </p>
+          </>
+        )}
+      </div>
+    </>
   )
 }
