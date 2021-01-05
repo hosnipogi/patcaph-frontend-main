@@ -15,7 +15,7 @@ import {
 } from "@windmill/react-ui"
 
 const CustomCard = ({ children }) => (
-  <Card className="p-4 mb-4">{children}</Card>
+  <Card className="p-4 mb-4 border">{children}</Card>
 )
 
 CustomCard.propTypes = {
@@ -61,7 +61,9 @@ const Review = () => {
                 <div className="grid-cols-2 gap-4 lg:grid">
                   <div>
                     <h6>Birthday</h6>
-                    <CustomCard>{values.birthplace}</CustomCard>
+                    <CustomCard>
+                      {values.birthday}
+                    </CustomCard>
                   </div>
                   <div>
                     <h6>Birthplace</h6>
@@ -82,7 +84,9 @@ const Review = () => {
                   </div>
                   <div>
                     <h6>Date Employed</h6>
-                    <CustomCard>{values.dateEmployed}</CustomCard>
+                    <CustomCard>
+                      {values.dateEmployed}
+                    </CustomCard>
                   </div>
                 </div>
                 <div className="grid-cols-3 gap-4 lg:grid">
@@ -92,11 +96,16 @@ const Review = () => {
                   </div>
                   <div>
                     <h6>ATC License Expiry</h6>
-                    <CustomCard>{values.ATCLicenseExpiry}</CustomCard>
+                    <CustomCard>
+                      {values.ATCLicenseExpiry}
+                    </CustomCard>
                   </div>
                   <div>
                     <h6>Medical License Expiry</h6>
-                    <CustomCard> {values.medicalLicenseExpiry}</CustomCard>
+                    <CustomCard>
+                      {" "}
+                      {values.medicalLicenseExpiry}
+                    </CustomCard>
                   </div>
                 </div>
               </CustomCard>
@@ -119,8 +128,12 @@ const Review = () => {
                           <TableRow key={index}>
                             <TableCell>{fac.facility}</TableCell>
                             <TableCell>{fac.area}</TableCell>
-                            <TableCell>{fac.from}</TableCell>
-                            <TableCell>{fac.to}</TableCell>
+                            <TableCell>
+                              {fac.from}
+                            </TableCell>
+                            <TableCell>
+                              {fac.to}
+                            </TableCell>
                             <TableCell>{fac.designation}</TableCell>
                           </TableRow>
                         )
@@ -132,10 +145,12 @@ const Review = () => {
             </>
           ) : dirty ? (
             <div>
-              <h5 className="mb-4 text-red-500">Please fill up:</h5>
+              <h5 className="mb-4 text-red-500">Please complete fields:</h5>
               <ul>
                 {Object.keys(errors).map(err => (
-                  <li key={err}>{err}</li>
+                  <li key={err} style={{ textTransform: "uppercase" }}>
+                    {err}
+                  </li>
                 ))}
               </ul>
             </div>

@@ -50,8 +50,8 @@ const Footer = ({ routes }) => {
       </div>
       <div className="flex items-center justify-center gap-2 p-4 text-white bg-black">
         <span>
-          ©Philippine Air Traffic Controllers&apos; Association{" "}
-          {new Date().getFullYear()}
+          © {new Date().getFullYear()} Philippine Air Traffic Controllers&apos;
+          Association
         </span>
       </div>
     </footer>

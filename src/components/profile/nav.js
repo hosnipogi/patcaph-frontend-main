@@ -4,7 +4,6 @@ import { useLocation } from "@reach/router"
 import { Link } from "gatsby"
 import { FormContext } from "../../contexts/FormContext"
 import tw, { styled } from "twin.macro"
-import { Card } from "@windmill/react-ui"
 
 const NavMenu = styled.nav`
   ${tw`flex items-center text-xs`}
@@ -52,7 +51,7 @@ const Nav = () => {
   const path = pathname.replace("/profile/", "")
 
   return (
-    <Card className="p-4 mb-6">
+    <div className="p-4 mb-6">
       <NavMenu>
         <Link to="/profile/personal">
           <div>
@@ -120,7 +119,7 @@ const Nav = () => {
           </div>
         </Link>
       </NavMenu>
-    </Card>
+    </div>
   )
 }
 

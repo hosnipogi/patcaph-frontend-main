@@ -125,6 +125,11 @@ label {
   left: 0;
 }
 
+/** DatePicker Input library **/
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
 /** Input type text **/
 
 input[type="text"],

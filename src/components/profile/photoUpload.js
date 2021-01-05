@@ -7,7 +7,7 @@ import { Card } from "@windmill/react-ui"
 const PhotoUpload = () => {
   return (
     <>
-      <Card className="flex-col p-4 mb-4">
+      <Card className="flex-col p-4 mb-4 border">
         <ImageCropper />
       </Card>
       <div className="flex flex-row justify-between w-full">

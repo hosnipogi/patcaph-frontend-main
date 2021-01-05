@@ -49,45 +49,47 @@ const contactUs = () => {
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
-            {props => (
-              <Form>
-                <FormControl
-                  control="input"
-                  type="text"
-                  name="name"
-                  label="Name"
-                />
-                <FormControl
-                  control="input"
-                  type="email"
-                  name="email"
-                  placeholder="*"
-                  label="Email"
-                  errors={props.errors.email}
-                  touched={props.touched.email}
-                />
-                <FormControl
-                  control="input"
-                  type="text"
-                  name="subject"
-                  label="Subject"
-                />
-                <FormControl
-                  control="textarea"
-                  name="message"
-                  placeholder="*"
-                  label="Message"
-                  errors={props.errors.message}
-                  touched={props.touched.message}
-                  rows="8"
-                />
-                <Submit
-                  label="Submit"
-                  disabled={!props.isValid}
-                  isSubmitting={props.isSubmitting}
-                />
-              </Form>
-            )}
+            {formik => {
+              return (
+                <Form>
+                  <FormControl
+                    control="input"
+                    type="text"
+                    name="name"
+                    label="Name"
+                    formik={formik}
+                  />
+                  <FormControl
+                    control="input"
+                    type="email"
+                    name="email"
+                    placeholder="*"
+                    label="Email"
+                    formik={formik}
+                  />
+                  <FormControl
+                    control="input"
+                    type="text"
+                    name="subject"
+                    label="Subject"
+                    formik={formik}
+                  />
+                  <FormControl
+                    control="textarea"
+                    name="message"
+                    placeholder="*"
+                    label="Message"
+                    formik={formik}
+                    rows="8"
+                  />
+                  <Submit
+                    label="Submit"
+                    disabled={!formik.isValid}
+                    isSubmitting={formik.isSubmitting}
+                  />
+                </Form>
+              )
+            }}
           </Formik>
         ) : (
           <p>{response.message}</p>

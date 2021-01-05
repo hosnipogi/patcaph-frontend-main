@@ -1,27 +1,31 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useRef } from "react"
 import { Link } from "gatsby"
 import { FormContext } from "../../contexts/FormContext"
 import FormControl from "../../components/elements/forms/FormControl"
+import filterInput from "../../lib/utils/filterInput"
 import { RightArrowIcon } from "../icons/"
 import { Card } from "@windmill/react-ui"
 
 function PersonalInformation() {
+  const telephoneInput = useRef(null)
   const { formik, stuffForChildren } = useContext(FormContext)
   const { fields } = stuffForChildren
-
   const { gender, civil_status } = fields
 
+  useEffect(() => {
+    filterInput(telephoneInput.current, value => /^\+?[0-9\s]*$/.test(value))
+  }, [])
+
   return (
-    <div className="flex flex-col text-sm">
-      <Card className="grid-cols-3 gap-4 px-4 pt-4 lg:grid">
+    <div className="flex flex-col">
+      <Card className="grid-cols-3 gap-4 pt-4 lg:border lg:px-4 lg:grid">
         <FormControl
           control="input"
           type="text"
           name="firstname"
           label="First name"
           placeholder="José"
-          errors={formik.errors.firstname}
-          touched={formik.touched.firstname}
+          formik={formik}
         />
         <FormControl
           control="input"
@@ -29,8 +33,7 @@ function PersonalInformation() {
           name="middlename"
           label="Middle name"
           placeholder="Protasio"
-          errors={formik.errors.middlename}
-          touched={formik.touched.middlename}
+          formik={formik}
         />
         <FormControl
           control="input"
@@ -38,19 +41,17 @@ function PersonalInformation() {
           name="surname"
           label="Surname"
           placeholder="Rizal"
-          errors={formik.errors.surname}
-          touched={formik.touched.surname}
+          formik={formik}
         />
       </Card>
-      <Card className="px-4 pt-4 my-4">
+      <Card className="pt-4 my-4 overflow-visible lg:border lg:px-4">
         <FormControl
           control="input"
           type="text"
           name="address"
           label="Address"
           placeholder="House number, Street [Barangay,] City, [Country]"
-          errors={formik.errors.address}
-          touched={formik.touched.address}
+          formik={formik}
         />
         <FormControl
           control="input"
@@ -58,8 +59,8 @@ function PersonalInformation() {
           name="contactNumber"
           label="Contact Number"
           placeholder="915 123 4567"
-          errors={formik.errors.contactNumber}
-          touched={formik.touched.contactNumber}
+          formik={formik}
+          innerRef={telephoneInput}
         />
         <div className="grid grid-cols-3 mt-4 text-gray-700">
           <FormControl
@@ -80,14 +81,10 @@ function PersonalInformation() {
         <div className="grid-cols-3 gap-4 mt-8 lg:grid">
           <FormControl
             label="Birthday"
-            control="input"
-            type="date"
-            placeholder="YYYY-MM-DD"
+            control="date"
             name="birthday"
-            errors={formik.errors.birthday}
-            touched={formik.touched.birthday}
-            max="2002-12-31"
-            errorstyles="relative text-right"
+            maxDate={new Date("January 1, 2002")}
+            formik={formik}
           />
           <div className="col-span-2">
             <FormControl
@@ -96,8 +93,7 @@ function PersonalInformation() {
               type="text"
               placeholder="City, Country"
               name="birthplace"
-              errors={formik.errors.birthplace}
-              touched={formik.touched.birthplace}
+              formik={formik}
               errorstyles="relative text-right"
             />
           </div>

@@ -8,7 +8,7 @@ import {
   TwitterShareButton,
   TwitterIcon,
 } from "react-share"
-import { DOMAIN } from "../../lib/config/URLs"
+import { HOME_URL } from "../../lib/config/URLs"
 import BackgroundImage from "gatsby-background-image"
 import "../../styles/md.css"
 
@@ -53,12 +53,14 @@ export default function Template({ data }) {
               <span className="mr-4">Share this post</span>
               <span>
                 <FacebookShareButton
-                  url={`${DOMAIN}${frontmatter.slug}`}
+                  url={`${HOME_URL}/articles${frontmatter.slug}`}
                   className="mr-2"
                 >
                   <FacebookIcon size="40" round="true" />
                 </FacebookShareButton>
-                <TwitterShareButton url={`${DOMAIN}${frontmatter.slug}`}>
+                <TwitterShareButton
+                  url={`${HOME_URL}/articles${frontmatter.slug}`}
+                >
                   <TwitterIcon size="40" round="true" />
                 </TwitterShareButton>
               </span>

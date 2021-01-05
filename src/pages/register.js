@@ -71,7 +71,7 @@ const Register = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {props => {
+          {formik => {
             return (
               <Form>
                 <FormControl
@@ -79,24 +79,21 @@ const Register = () => {
                   type="text"
                   name="email"
                   placeholder="Email"
-                  errors={props.errors.email}
-                  touched={props.touched.email}
+                  formik={formik}
                 />
                 <FormControl
                   control="input"
                   type="password"
                   name="password"
                   placeholder="Password"
-                  errors={props.errors.password}
-                  touched={props.touched.password}
+                  formik={formik}
                 />
                 <FormControl
                   control="input"
                   type="password"
                   name="password_confirmation"
                   placeholder="Confirm Password"
-                  errors={props.errors.password_confirmation}
-                  touched={props.touched.password_confirmation}
+                  formik={formik}
                 />
                 <p className="mt-8 mb-4 text-sm">
                   By clicking Register, you agree to our{" "}
@@ -110,8 +107,8 @@ const Register = () => {
                 </p>
                 <Submit
                   label="Register"
-                  disabled={!props.isValid}
-                  isSubmitting={props.isSubmitting}
+                  disabled={!formik.isValid}
+                  isSubmitting={formik.isSubmitting}
                 />
               </Form>
             )

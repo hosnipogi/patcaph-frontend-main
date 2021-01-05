@@ -20,7 +20,7 @@ function RadioButtons(props) {
               <label
                 htmlFor={option}
                 key={index}
-                className="block mr-4 hover:text-blue-600"
+                className="block mr-4 text-sm hover:text-blue-600"
               >
                 <input
                   type="radio"

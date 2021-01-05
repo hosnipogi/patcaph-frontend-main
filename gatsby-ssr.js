@@ -11,7 +11,9 @@ import { UserProvider } from "./src/contexts/UserContext"
 import { Windmill } from "@windmill/react-ui"
 
 export const wrapPageElement = ({ element, props }) => {
-  return <Layout {...props}>{element}</Layout>
+  if (element.key !== "/404.html") {
+    return <Layout {...props}>{element}</Layout>
+  }
 }
 
 export const wrapRootElement = ({ element }) => {

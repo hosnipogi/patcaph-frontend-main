@@ -5,12 +5,15 @@ import RadioButtons from "./RadioButtons"
 import CheckBox from "./CheckBox"
 import Select from "./Select"
 import Textarea from "./Textarea"
+import DateInput from "./DateInput"
 
 function FormControl(props) {
   const { control, ...rest } = props
   switch (control) {
     case "input":
       return <Input {...rest} />
+    case "date":
+      return <DateInput {...rest} />
     case "radio":
       return <RadioButtons {...rest} />
     case "checkbox":

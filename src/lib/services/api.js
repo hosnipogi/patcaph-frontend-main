@@ -31,11 +31,9 @@ class API {
   fetch() {
     return new Promise((resolve, reject) => {
       this.api["get"](SANCTUM)
-        .then(sanctum => {
-          console.log({ sanctum })
+        .then(() => {
           this.api[this.method](this.url, this.data)
             .then(response => {
-              console.log({ response })
               if (response.status === 200 || response.status === 204) {
                 this.submitProps?.setSubmitting(false)
                 this.setResponse?.({

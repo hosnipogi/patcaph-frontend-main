@@ -8,7 +8,8 @@ import React, {
 import ReactCrop from "react-image-crop"
 import "react-image-crop/dist/ReactCrop.css"
 import { FormContext } from "../../contexts/FormContext"
-import { Button, Modal, ModalHeader, ModalFooter } from "@windmill/react-ui"
+import { Button, Modal } from "@windmill/react-ui"
+import { BsFillPersonFill } from "react-icons/bs"
 
 // Increase pixel density for crop preview quality on retina screens.
 const pixelRatio = 1
@@ -155,12 +156,17 @@ export default function App() {
   return (
     <div className="relative flex flex-col items-center justify-center my-20">
       {!state.completedCrop ? (
-        <div className="w-1/2 mb-8 border-4 border-gray-300 rounded-full shadow-lg md:w-1/3 lg:w-1/5 cr">
-          <img
-            src={photo === null ? "https://i.pravatar.cc/300" : photo}
-            className={photo !== null ? "rounded-full" : ""}
-            alt="avatar"
-          />
+        <div className="w-1/2 mb-8 md:w-1/3 lg:w-1/5">
+          {photo === null ? (
+            <BsFillPersonFill
+              fill="gray"
+              style={{ width: "10em", height: "10em" }}
+            />
+          ) : (
+            <span className="border-4 border-gray-300 rounded-full shadow-lg ">
+              <img src={photo} className="rounded-full" alt="avatar" />
+            </span>
+          )}
         </div>
       ) : state.crop.width !== 0 ? (
         <div
@@ -195,16 +201,15 @@ export default function App() {
         accept="image/*"
         onChange={onSelectFile}
         onClick={() => formik.setFieldTouched("photo")}
-        className={`w-full md:w-1/2 border-2 p-4 rounded-lg mb-4 block hover:border-gray-400 ${
+        className={`w-full md:w-1/2 border p-4 rounded-lg mb-4 block hover:border-gray-400 ${
           (formik.values.photo === undefined && formik.touched.photo) ||
           state.crop.width === 0
             ? "bg-red-100 border-red-300"
-            : "border-gray-200 bg-white"
+            : "border-gray-300 bg-white"
         }`}
       />
-      <Modal isOpen={state.modalIsOpen}>
-        {/* <div className="flex flex-col items-center justify-center w-full"> */}
-        <ModalHeader>
+      <Modal isOpen={state.modalIsOpen}>123
+        {/* <ModalHeader> */}
           <ReactCrop
             src={state.upimg}
             onImageLoaded={onLoad}
@@ -215,8 +220,8 @@ export default function App() {
             }
             minWidth="50"
           />
-        </ModalHeader>
-        <ModalFooter>
+        {/* </ModalHeader>
+        <ModalFooter> */}
           <Button
             className="w-4/12 p-4 mt-4 text-white bg-blue-500 rounded-lg shadow-sm md:w-2/12 hover:bg-blue-700"
             type="button"
@@ -229,65 +234,8 @@ export default function App() {
           >
             Crop
           </Button>
-        </ModalFooter>
+        {/* </ModalFooter> */}
       </Modal>
-      {state.completedCrop && (
-        <>
-          <div>
-            <p className="font-bold">Img</p>
-            <ul className="ml-4 text-sm">
-              <li>Width: {imgRef.current.width}</li>
-              <li>Height: {imgRef.current.height}</li>
-              <li>Natural Width: {imgRef.current.naturalWidth}</li>
-              <li>Natural Height: {imgRef.current.naturalHeight}</li>
-              <li>
-                Scale Ratio Width:{" "}
-                {imgRef.current.naturalWidth / imgRef.current.width}
-              </li>
-              <li>
-                Scale Ratio Height:{" "}
-                {imgRef.current.naturalHeight / imgRef.current.height}
-              </li>
-            </ul>
-            <hr />
-            <p className="font-bold">Crop details</p>
-            <ul className="ml-4 text-sm">
-              <li>X: {state.completedCrop.x}</li>
-              <li>Y: {state.completedCrop.y}</li>
-              <li>Width: {state.completedCrop.width}</li>
-              <li>Height: {state.completedCrop.height}</li>
-            </ul>
-            <hr />
-            <div>
-              <p className="font-bold">Calculated crop</p>
-              <ul className="ml-4 text-sm">
-                <li>
-                  w:{" "}
-                  {state.completedCrop.height *
-                    (imgRef.current.naturalHeight / imgRef.current.height)}
-                </li>
-                <li>
-                  h:{" "}
-                  {state.completedCrop.height *
-                    (imgRef.current.naturalHeight / imgRef.current.height)}
-                </li>
-              </ul>
-            </div>
-          </div>
-          <button
-            className="mt-4 btnForms"
-            type="button"
-            onClick={() => {
-              const anchor = document.createElement("a")
-              anchor.download = "preview.jpg"
-              anchor.href = photo
-              anchor.click()
-            }}
-          >
-            Download
-          </button>
-        </>
-      )}
     </div>
   )
 }

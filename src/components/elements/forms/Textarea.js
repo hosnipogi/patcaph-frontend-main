@@ -4,7 +4,10 @@ import { Field, ErrorMessage } from "formik"
 import ErrorText from "./Error"
 
 function Textarea(props) {
-  const { label, name, errors, touched, errorstyles, styles, ...rest } = props
+  const { label, name, formik, errorstyles, styles, ...rest } = props
+  const errors = formik.errors[name]
+  const touched = formik.touched[name]
+
   return (
     <div className="relative">
       <ErrorMessage
@@ -17,7 +20,7 @@ function Textarea(props) {
         as="textarea"
         name={name}
         id={name}
-        className={`w-full text-lg border-2 border-gray-200 p-4 rounded-lg mb-4 block ${
+        className={`w-full text-lg border border-gray-300 hover:border-gray-400 p-4 rounded-lg mb-4 block ${
           errors && touched
             ? "border-red-200 bg-red-100"
             : !errors && touched
@@ -31,12 +34,14 @@ function Textarea(props) {
 }
 
 Textarea.propTypes = {
-  errors: PropTypes.any,
-  errorstyles: PropTypes.string,
-  label: PropTypes.string,
-  name: PropTypes.string,
-  styles: PropTypes.string,
-  touched: PropTypes.bool,
+  errorstyles: PropTypes.any,
+  formik: PropTypes.shape({
+    errors: PropTypes.any,
+    touched: PropTypes.any,
+  }),
+  label: PropTypes.any,
+  name: PropTypes.any,
+  styles: PropTypes.any,
 }
 
 export default Textarea

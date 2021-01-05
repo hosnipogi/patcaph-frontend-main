@@ -20,7 +20,7 @@ module.exports = windmill({
       },
       fontFamily: {
         balto: ["Balto", "sans-serif"],
-        harriet: ["Harriet", "nunito", "sans-serif"],
+        harriet: ["Harriet", "sans-serif", "nunito"],
       },
     },
   },

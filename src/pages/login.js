@@ -32,7 +32,6 @@ export default function Login() {
     try {
       const { data } = await api.fetch()
       const { email, hasProfile } = data
-      console.log(data)
       dispatch({ type: "SET_ERRORS", payload: null })
       dispatch({
         type: "SET_USER",
@@ -59,8 +58,8 @@ export default function Login() {
   useEffect(() => {
     if (state.user !== null)
       state.user.hasProfile
-        ? setTimeout(() => window.location.replace(DASHBOARD), 2000)
-        : setTimeout(() => navigate("/profile"), 4000)
+        ? setTimeout(() => window.location.replace(DASHBOARD), 1400)
+        : setTimeout(() => navigate("/profile"), 1400)
     return () => {}
   }, [state.user])
 
@@ -81,7 +80,7 @@ export default function Login() {
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
-            {props => {
+            {formik => {
               return (
                 <Form>
                   <FormControl
@@ -89,21 +88,19 @@ export default function Login() {
                     type="email"
                     name="email"
                     placeholder="Email"
-                    errors={props.errors.email}
-                    touched={props.touched.email}
+                    formik={formik}
                   />
                   <FormControl
                     control="input"
                     type="password"
                     name="password"
                     placeholder="Password"
-                    errors={props.errors.password}
-                    touched={props.touched.password}
+                    formik={formik}
                   />
                   <Submit
                     label="Login &rarr;"
-                    disabled={!props.isValid}
-                    isSubmitting={props.isSubmitting}
+                    disabled={!formik.isValid}
+                    isSubmitting={formik.isSubmitting}
                   />
                 </Form>
               )

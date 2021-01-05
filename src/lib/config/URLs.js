@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 const APP_URL = process.env.GATSBY_API_URL || "https://api.patca.ph"
+export const HOME_URL = process.env.GATSBY_HOME_URL || "https://patca.ph"
 export const API_BASE_URL = `${APP_URL}/v1`
 export const SANCTUM = `${APP_URL}/sanctum/csrf-cookie`
 

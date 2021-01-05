@@ -111,7 +111,6 @@ const index = () => {
                   (ICAO Annex 11)
                 </li>
               </ul>
-              {/* <CTA to="/gallery">View Gallery</CTA> */}
             </div>
           </div>
         </BackgroundImage>
