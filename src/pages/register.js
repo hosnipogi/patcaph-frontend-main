@@ -119,7 +119,7 @@ const Register = () => {
           </Formik>
         ) : (
           <p className="block w-full p-4 mb-4 text-green-500 bg-green-100 border-2 border-green-300 rounded-lg hover:border-gray-400">
-            Success. Redirecting..
+            Please complete membership registration in the next step.
           </p>
         )}
         <hr className="my-5" />

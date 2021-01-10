@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, useEffect } from "react"
 import PropTypes from "prop-types"
 import Api from "../lib/services/api"
-import { ADMIN_GET_SINGLE_USER } from "../lib/config/URLs"
+import { AUTH_USER_MAIN } from "../lib/config/URLs"
 
 const initialState = {
   user: null,
@@ -27,7 +27,7 @@ export const UserContext = createContext(null)
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const api = React.useMemo(
-    () => new Api({ url: ADMIN_GET_SINGLE_USER, method: "get" }),
+    () => new Api({ url: AUTH_USER_MAIN, method: "get" }),
     []
   )
   useEffect(() => {
@@ -35,6 +35,7 @@ export const UserProvider = ({ children }) => {
     ;(async () => {
       try {
         const { data } = await api.fetch()
+        console.log(data)
         if (data.email !== undefined) {
           dispatch({
             type: "SET_USER",

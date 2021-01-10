@@ -13,7 +13,7 @@ import BackgroundImage from "gatsby-background-image"
 import "../../styles/md.css"
 import SEO from "../../components/seo"
 
-export default function Template({ data }) {
+export default function ArticleTemplate({ data }) {
   const { article, articles } = data
   const { frontmatter, html, excerpt } = article
 
@@ -94,13 +94,13 @@ export default function Template({ data }) {
   )
 }
 
-Template.propTypes = {
+ArticleTemplate.propTypes = {
   data: PropTypes.shape({
     article: PropTypes.shape({
-      excerpt: PropTypes.any,
+      excerpt: PropTypes.string,
       frontmatter: PropTypes.shape({
-        author: PropTypes.any,
-        date: PropTypes.any,
+        author: PropTypes.string,
+        date: PropTypes.date,
         featuredImage: PropTypes.shape({
           src: PropTypes.shape({
             childImageSharp: PropTypes.shape({
@@ -108,16 +108,12 @@ Template.propTypes = {
             }),
           }),
         }),
-        slug: PropTypes.any,
-        title: PropTypes.any,
+        slug: PropTypes.string,
+        title: PropTypes.string,
       }),
-      html: PropTypes.any,
+      html: PropTypes.string,
     }),
-    articles: PropTypes.shape({
-      edges: PropTypes.shape({
-        map: PropTypes.func,
-      }),
-    }),
+    articles: PropTypes.object,
   }),
 }
 
@@ -125,6 +121,7 @@ export const query = graphql`
   query($id: String!, $slug: StringQueryOperatorInput = { ne: null }) {
     article: markdownRemark(id: { eq: $id }) {
       html
+      excerpt(pruneLength: 160)
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         slug

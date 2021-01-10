@@ -163,7 +163,7 @@ export default function App() {
               style={{ width: "10em", height: "10em" }}
             />
           ) : (
-            <span className="border-4 border-gray-300 rounded-full shadow-lg ">
+            <span className="rounded-full shadow-lg ">
               <img src={photo} className="rounded-full" alt="avatar" />
             </span>
           )}
@@ -208,32 +208,30 @@ export default function App() {
             : "border-gray-300 bg-white"
         }`}
       />
-      <Modal isOpen={state.modalIsOpen}>123
+      <Modal isOpen={state.modalIsOpen}>
         {/* <ModalHeader> */}
-          <ReactCrop
-            src={state.upimg}
-            onImageLoaded={onLoad}
-            crop={state.crop}
-            onChange={c => dispatch({ type: "SET_CROP", payload: c })}
-            onComplete={c =>
-              dispatch({ type: "SET_COMPLETED_CROP", payload: c })
-            }
-            minWidth="50"
-          />
+        <ReactCrop
+          src={state.upimg}
+          onImageLoaded={onLoad}
+          crop={state.crop}
+          onChange={c => dispatch({ type: "SET_CROP", payload: c })}
+          onComplete={c => dispatch({ type: "SET_COMPLETED_CROP", payload: c })}
+          minWidth="50"
+        />
         {/* </ModalHeader>
         <ModalFooter> */}
-          <Button
-            className="w-4/12 p-4 mt-4 text-white bg-blue-500 rounded-lg shadow-sm md:w-2/12 hover:bg-blue-700"
-            type="button"
-            onClick={() =>
-              dispatch({
-                type: "SET_MODAL_IS_OPEN",
-                payload: false,
-              })
-            }
-          >
-            Crop
-          </Button>
+        <Button
+          className="w-4/12 p-4 mt-4 text-white bg-blue-500 rounded-lg shadow-sm md:w-2/12 hover:bg-blue-700"
+          type="button"
+          onClick={() =>
+            dispatch({
+              type: "SET_MODAL_IS_OPEN",
+              payload: false,
+            })
+          }
+        >
+          Crop
+        </Button>
         {/* </ModalFooter> */}
       </Modal>
     </div>

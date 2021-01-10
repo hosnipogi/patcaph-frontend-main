@@ -10,7 +10,7 @@ import {
 import Api from "../lib/services/api"
 import useAxios from "../lib/hooks/useAxios"
 import {
-  CURRENT_USER_PROFILE,
+  AUTH_USER_MAIN_STORE_PROFILE,
   DASHBOARD,
   PROFILE_FIELDS,
 } from "../lib/config/URLs"
@@ -33,8 +33,8 @@ export default function () {
   // Prevent un-authenticated user and authenticated user who has already completed profile to access this page
 
   useEffect(() => {
-    !state.user && navigate("/about")
-    state.user?.hasProfile && navigate("/about")
+    !state.user && navigate("/login")
+    state.user?.hasProfile && navigate("/login")
   }, [])
 
   const title = useRef(null)
@@ -69,7 +69,7 @@ export default function () {
   const [response, setResponse] = useState({ success: false })
   const handleSubmit = async (values, submitProps) => {
     const api = new Api({
-      url: CURRENT_USER_PROFILE,
+      url: AUTH_USER_MAIN_STORE_PROFILE,
       method: "post",
       data: values,
       submitProps,
