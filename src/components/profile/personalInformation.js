@@ -102,6 +102,7 @@ function PersonalInformation() {
       <Link
         className="self-end w-4/12 p-4 text-white bg-blue-500 rounded-lg shadow-sm md:w-2/12 hover:bg-blue-700"
         to="/profile/employment"
+        data-testid="profile__personal__button__next"
       >
         <RightArrowIcon width="100%" height="1.3em" />
       </Link>

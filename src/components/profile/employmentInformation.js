@@ -260,6 +260,7 @@ function EmploymentInformation() {
                         designation: "",
                       })
                     }
+                    data-testid="profile__employment__button__addmore"
                     className="px-4 py-2 mb-2 text-sm text-white bg-blue-500 rounded-md"
                   >
                     Add More
@@ -281,6 +282,7 @@ function EmploymentInformation() {
         <Link
           to="/profile/photo"
           className="w-4/12 p-4 text-white bg-blue-500 rounded-lg shadow-sm md:w-2/12 hover:bg-blue-700"
+          data-testid="profile__employment__button__next"
         >
           <RightArrowIcon width="100%" height="1.3em" />
         </Link>

@@ -35,7 +35,6 @@ export const UserProvider = ({ children }) => {
     ;(async () => {
       try {
         const { data } = await api.fetch()
-        console.log(data)
         if (data.email !== undefined) {
           dispatch({
             type: "SET_USER",

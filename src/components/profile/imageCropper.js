@@ -229,6 +229,7 @@ export default function App() {
               payload: false,
             })
           }
+          data-testid="profile__photo__button__crop"
         >
           Crop
         </Button>

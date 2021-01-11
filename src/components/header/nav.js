@@ -36,7 +36,9 @@ const generateIcon = route => {
         <VscOrganization className="nav__main__desktop__routes__links__icon" />
       )
     case "/contact":
-      return <MdHeadsetMic className="nav__main__desktop__routes__links__icon" />
+      return (
+        <MdHeadsetMic className="nav__main__desktop__routes__links__icon" />
+      )
     default:
       return
   }
