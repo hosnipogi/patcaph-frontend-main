@@ -16,9 +16,9 @@ const initialValues = {
 
 const validationSchema = Yup.object({
   email: Yup.string()
-    .email("Invalid email format ⚠️")
-    .required("Please enter Email ⚠️"),
-  password: Yup.string().required("Please enter password ⚠️"),
+    .email("Invalid email format")
+    .required("Please enter Email"),
+  password: Yup.string().required("Please enter password"),
 })
 
 export default function Login() {
@@ -43,11 +43,9 @@ export default function Login() {
       })
       dispatch({ type: "SET_LOGIN_STATUS", payload: true })
     } catch (e) {
-      console.log(e)
       const { errors, message } = e
       submitProps.setErrors({
         email: errors.email,
-        password: "⚠️",
       })
       dispatch({
         type: "SET_ERRORS",

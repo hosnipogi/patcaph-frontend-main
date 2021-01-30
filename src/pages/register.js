@@ -18,12 +18,12 @@ const initialValues = {
 
 const validationSchema = Yup.object({
   email: Yup.string()
-    .email("Invalid email format ⚠️")
-    .required("Please enter Email ⚠️"),
-  password: Yup.string().required("Please enter password ⚠️").min(6),
+    .email("Invalid email format")
+    .required("Please enter Email"),
+  password: Yup.string().required("Please enter password").min(6),
   password_confirmation: Yup.string()
     .oneOf([Yup.ref("password"), ""], "Passwords do not match")
-    .required("Please confirm password ⚠️"),
+    .required("Please confirm password"),
 })
 
 const Register = () => {
@@ -50,12 +50,9 @@ const Register = () => {
       dispatch({ type: "SET_LOGIN_STATUS", payload: true })
     } catch (e) {
       api.abort()
-      console.log(e)
       const { errors, message } = e
       submitProps.setErrors({
         email: errors.email,
-        password: "⚠️",
-        password_confirmation: "⚠️",
       })
       dispatch({
         type: "SET_ERRORS",

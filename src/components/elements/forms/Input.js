@@ -10,16 +10,20 @@ function Input(props) {
 
   return (
     <div className="relative w-full">
-      {label && (
-        <h6 className="mb-1">
-          <label htmlFor={name}>{label}</label>
-        </h6>
-      )}
-      <ErrorMessage
-        component={ErrorText}
-        errorstyles={errorstyles}
-        name={name}
-      />
+      <div className="grid grid-cols-2">
+        {label && (
+          <h6 className="mb-1">
+            <label htmlFor={name}>{label}</label>
+          </h6>
+        )}
+        <ErrorMessage
+          component={ErrorText}
+          errorstyles={`${errorstyles} ${
+            !label ? "col-span-2" : "text-right"
+          }`}
+          name={name}
+        />
+      </div>
       <Field
         id={name}
         name={name}

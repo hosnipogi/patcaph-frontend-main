@@ -29,39 +29,49 @@ export const initialValues = {
 }
 
 export const validationSchema = Yup.object({
-  firstname: Yup.string().required("⚠️"),
-  middlename: Yup.string().required("⚠️"),
-  surname: Yup.string().required("⚠️"),
-  address: Yup.string().required("⚠️"),
-  contactNumber: Yup.string().required("⚠️"),
-  gender: Yup.string().required("⚠️"),
-  civilStatus: Yup.string().required("⚠️"),
-  birthday: Yup.date().required("⚠️").typeError("Enter a valid date"),
-  birthplace: Yup.string().required("⚠️"),
+  firstname: Yup.string().required("Required"),
+  middlename: Yup.string().required("Required"),
+  surname: Yup.string().required("Required"),
+  address: Yup.string().required("Required"),
+  contactNumber: Yup.string().required("Required"),
+  gender: Yup.string().required("Required"),
+  civilStatus: Yup.string().required("Required"),
+  birthday: Yup.date().required("Required").typeError("Enter a valid date"),
+  birthplace: Yup.string().required("Required"),
   wiresign: Yup.string()
     .min(2, "Must be at least 2 characters")
     .max(2)
-    .required("⚠️"),
-  dateEmployed: Yup.date().required("⚠️").typeError("Enter a valid date"),
+    .required("Required"),
+  dateEmployed: Yup.date().required("Required").typeError("Enter a valid date"),
   licenseNumber: Yup.string()
-    .required("⚠️")
+    .required("Required")
     .max(6, "Must be at most 6 digits")
     .min(6, "Must be at least 6 digits"),
-  ATCLicenseExpiry: Yup.date().required("⚠️").typeError("Enter a valid date"),
+  ATCLicenseExpiry: Yup.date()
+    .required("Required")
+    .typeError("Enter a valid date"),
   medicalLicenseExpiry: Yup.date()
-    .required("⚠️")
+    .required("Required")
     .typeError("Enter a valid date"),
   facility: Yup.array(
     Yup.object({
-      facility: Yup.string().required("⚠️"),
-      area: Yup.string().required("⚠️"),
-      from: Yup.date().required("⚠️").typeError("Enter a valid date"),
-      to: Yup.date().required("⚠️").typeError("Enter a valid date"),
-      designation: Yup.string().required("⚠️"),
+      facility: Yup.string()
+        .required("Required")
+        .test(val => !/^Select/.test(val)),
+      area: Yup.string()
+        .required("Required")
+        .test(val => !/^Select/.test(val)),
+      from: Yup.date().required("Required").typeError("Enter a valid date"),
+      to: Yup.date().required("Required").typeError("Enter a valid date"),
+      designation: Yup.string()
+        .required("Required")
+        .test(val => !/^Select/.test(val)),
     })
   )
-    .required("⚠️")
+    .required("Required")
     .min(1),
-  batch: Yup.string().required("⚠️"),
-  photo: Yup.object({ file: Yup.mixed().required() }).nullable(),
+  batch: Yup.string()
+    .required("Required")
+    .test(val => !/^Select/.test(val)),
+  photo: Yup.object({ file: Yup.mixed().required("Required") }).nullable(),
 })

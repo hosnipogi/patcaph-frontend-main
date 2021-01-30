@@ -14,12 +14,14 @@ function Select(props) {
 
   return (
     <div className="relative mb-4">
-      <ErrorMessage
-        component={ErrorText}
-        errorstyles={errorstyles}
-        name={name}
-      />
-      <h6 className="mb-1">{label}</h6>
+      <div className="grid grid-cols-2">
+        <h6 className="mb-1">{label}</h6>
+        <ErrorMessage
+          component={ErrorText}
+          errorstyles={`${errorstyles} ${!label ? 'col-span-2' : 'text-right'}`}
+          name={name}
+        />
+      </div>
       <Field
         as="select"
         name={name}
