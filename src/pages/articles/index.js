@@ -1,44 +1,49 @@
 import PropTypes from "prop-types"
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
-import { Card, CardBody } from "@windmill/react-ui"
 import SEO from "../../components/seo"
 
-const Articles = ({ data }) => (
-  <>
-    <SEO title="Articles" />
-    <div className="lg:flex">
-      {data.articles.nodes.map(article => (
-        <div key={article.childMarkdownRemark.frontmatter.slug}>
-          <Link to={`/articles${article.childMarkdownRemark.frontmatter.slug}`}>
-            <Card
-              colored
-              className="mb-4 bg-gray-100 border shadow-sm hover:shadow-md lg:mx-2"
+const Articles = ({ data }) => {
+  return (
+    <>
+      <SEO title="Articles" />
+      <ul className="">
+        {data.articles.nodes.map(article => (
+          <li
+            className="my-4"
+            key={article.childMarkdownRemark.frontmatter.slug}
+          >
+            <Link
+              to={`/articles${article.childMarkdownRemark.frontmatter.slug}`}
             >
-              {article.childMarkdownRemark.frontmatter?.featuredImage && (
+              <div className="flex mb-4">
                 <Img
                   fluid={
                     article.childMarkdownRemark.frontmatter.featuredImage.src
                       .childImageSharp.fluid
                   }
-                  className="object-cover"
+                  className="object-cover w-4/12"
                 />
-              )}
-              <CardBody>
-                <h6>{article.childMarkdownRemark.frontmatter.date}</h6>
-                <h4 className="mb-4 tracking-normal normal-case">
-                  {article.childMarkdownRemark.frontmatter.title}
-                </h4>
-                <p>{article.childMarkdownRemark.excerpt}</p>
-              </CardBody>
-            </Card>
-          </Link>
-        </div>
-      ))}
-    </div>
-  </>
-)
+                <div className="w-4/12 px-4">
+                  <h6>{article.childMarkdownRemark.frontmatter.date}</h6>
+                  <h6>{article.childMarkdownRemark.frontmatter.author}</h6>
+                  <h4 className="mb-4 tracking-normal normal-case hover:text-blue-700">
+                    {article.childMarkdownRemark.frontmatter.title}
+                  </h4>
+                </div>
+                <div className="w-4/12 px-4">
+                  <p>{article.childMarkdownRemark.excerpt}</p>
+                </div>
+              </div>
+              <hr />
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </>
+  )
+}
 
 Articles.propTypes = {
   data: PropTypes.any,
@@ -61,6 +66,7 @@ export const articlesQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             slug
             title
+            author
             featuredImage {
               alt
               src {
