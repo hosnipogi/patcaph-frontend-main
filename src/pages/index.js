@@ -20,7 +20,7 @@ const IndexPage = ({ data }) => {
       <SEO title="Home" />
       <Landing fallback={<Loading inline={false} />} />
 
-      <section className="container flex items-center justify-center py-10 mx-auto my-20">
+      <section className="container flex items-center justify-center py-0 mx-auto my-8 lg:my-24">
         {/* <section className="container flex items-center justify-center py-10 mx-auto lg:h-screen lg:py-4"> */}
         <div className="mx-auto">
           <div className="flex flex-col w-11/12 mx-auto lg:flex-row">

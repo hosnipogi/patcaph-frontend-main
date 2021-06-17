@@ -35,7 +35,7 @@ export const Title = styled.div`
   }
   hr {
     /* ${tw`my-1 lg:my-3`} */
-    ${tw`mx-auto my-1 lg:w-8/12 lg:my-3`}
+    ${tw`mx-auto my-1 lg:w-6/12 lg:my-3`}
   }
   .landing-title_section {
     .landing-title_subheading {
@@ -53,7 +53,7 @@ export const Title = styled.div`
   @media (max-width: 1024px) {
     top: 0;
     left: 0;
-    padding: 20vmin;
+    /* padding: 20vmin; */
     .landing-title_main {
       line-height: initial;
     }
@@ -61,7 +61,7 @@ export const Title = styled.div`
   @media (max-width: 760px) {
     top: 0;
     left: 0;
-    padding: 25vh 4rem;
+    /* padding: 25vh 4rem; */
     .landing-title_main {
       line-height: initial;
     }
