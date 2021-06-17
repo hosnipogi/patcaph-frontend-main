@@ -19,7 +19,7 @@ const Landing = () => {
     }
   `)
 
-  const slides = data.backgrounds.nodes.map(({ relativePath }) => relativePath)
+  // const slides = data.backgrounds.nodes.map(({ relativePath }) => relativePath)
 
   return (
     <div className="relative">
@@ -46,11 +46,16 @@ const Landing = () => {
         <BackgroundSlider
           className=""
           query={data}
-          initDelay={13} // delay before the first transition (if left at 0, the first image will be skipped initially)
+          initDelay={10} // delay before the first transition (if left at 0, the first image will be skipped initially)
           transition={1.5} // transition duration between images
           duration={3} // how long an image is shown
           // specify images to include (and their order) according to `relativePath`
-          images={slides}
+          images={[
+            "carousel/a.jpeg",
+            "carousel/d.jpg",
+            "carousel/b.jpg",
+            "carousel/c.jpg",
+          ]}
         />
       </BGOverlay>
     </div>

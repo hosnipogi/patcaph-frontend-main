@@ -6,7 +6,7 @@ import SEO from "../components/seo"
 
 export const query = graphql`
   query {
-    imageSharp(id: { eq: "79160747-c9ee-5794-8717-e78af44b4f97" }) {
+    imageSharp(fluid: { originalName: { eq: "a.jpeg" } }) {
       fluid(maxWidth: 1024, quality: 90) {
         ...GatsbyImageSharpFluid
       }
