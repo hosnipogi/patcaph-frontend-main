@@ -19,7 +19,9 @@ const Landing = () => {
     }
   `)
 
-  // const slides = data.backgrounds.nodes.map(({ relativePath }) => relativePath)
+  const slides = data.backgrounds.nodes
+    .map(({ relativePath }) => relativePath)
+    .sort()
 
   return (
     <div className="relative">
@@ -50,12 +52,7 @@ const Landing = () => {
           transition={1.5} // transition duration between images
           duration={3} // how long an image is shown
           // specify images to include (and their order) according to `relativePath`
-          images={[
-            "carousel/a.jpeg",
-            "carousel/d.jpg",
-            "carousel/b.jpg",
-            "carousel/c.jpg",
-          ]}
+          images={slides}
         />
       </BGOverlay>
     </div>
