@@ -3,27 +3,57 @@ import { Link, graphql, useStaticQuery } from "gatsby"
 // import BackgroundSlider from "gatsby-image-background-slider"
 import { Title } from "./elements"
 import Particles from "react-particles-js"
+import BackgroundImage from "gatsby-background-image"
 
 const Landing = () => {
   const data = useStaticQuery(graphql`
-    query {
-      imageSharp(fluid: { originalName: { eq: "brain.png" } }) {
-        fluid(maxWidth: 1024, quality: 90) {
-          ...GatsbyImageSharpFluid
+    query BGImage {
+      file(relativePath: { eq: "carousel/brain.png" }) {
+        childImageSharp {
+          fluid(quality: 90, maxWidth: 1920) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
         }
       }
     }
   `)
 
   return (
-    <div
-      style={{
-        backgroundImage: `url(${data.imageSharp.fluid.src})`,
-        backgroundSize: "cover",
-        backgroundPosition: "50% 40%",
-        height: "98vh",
-      }}
+    <BackgroundImage
+      Tag="section"
+      fluid={data.file.childImageSharp.fluid}
+      backgroundColor={`#040e18`}
+      className="grid h-screen"
     >
+      <div
+        style={{ gridArea: "1 / 1 / 2 / 2" }}
+        className="z-10 flex items-center justify-center text-center"
+      >
+        <Title>
+          <h4 className="mb-2 text-white font-balto">
+            PATCA in cooperation with CAAP ATS presents:
+          </h4>
+          <h3 className="landing-title_main">
+            Building Psychological Resilience
+          </h3>
+          <hr />
+          <div className="landing-title_section">
+            <h3 className="landing-title_subheading">
+              A webinar concerning mental health
+            </h3>
+            <h4 className="landing-title_subheading_minor">
+              June 23, 2021, Wednesday
+            </h4>
+            <h4 className="landing-title_subheading_minor">1:00PM - 5:30PM</h4>
+            <Link
+              to="/events"
+              className="block w-6/12 p-3 mx-auto mt-10 text-xl font-bold transition duration-200 border-4 border-white hover:bg-white hover:text-black"
+            >
+              View Event
+            </Link>
+          </div>
+        </Title>
+      </div>
       <Particles
         params={{
           particles: {
@@ -37,21 +67,6 @@ const Landing = () => {
             color: {
               value: "#ffffff",
             },
-            // shape: {
-            //   type: "circle",
-            //   stroke: {
-            //     width: 0,
-            //     color: "#000000",
-            //   },
-            //   polygon: {
-            //     nb_sides: 4,
-            //   },
-            //   image: {
-            //     src: "img/github.svg",
-            //     width: 100,
-            //     height: 100,
-            //   },
-            // },
             opacity: {
               value: 0.1,
               random: false,
@@ -136,42 +151,7 @@ const Landing = () => {
           retina_detect: true,
         }}
       ></Particles>
-      <Title>
-        <h4 className="mb-2 text-white font-balto">
-          PATCA in cooperation with CAAP ATS presents:
-        </h4>
-        <h3 className="landing-title_main">
-          Building Psychological Resilience
-        </h3>
-        <hr />
-        <div className="landing-title_section">
-          <h3 className="landing-title_subheading">
-            A webinar concerning mental health
-          </h3>
-          <h4 className="landing-title_subheading_minor">
-            June 23, 2021, Wednesday
-          </h4>
-          <h4 className="landing-title_subheading_minor">1:00PM - 5:30PM</h4>
-          <Link
-            to="/events"
-            className="block w-8/12 p-3 mx-auto mt-10 text-xl font-bold transition duration-200 border-4 border-white lg:w-2/12 hover:bg-white hover:text-black"
-          >
-            View Event
-          </Link>
-        </div>
-      </Title>
-      {/* <BGOverlay>
-        <BackgroundSlider
-          className=""
-          query={data}
-          initDelay={10} // delay before the first transition (if left at 0, the first image will be skipped initially)
-          transition={1.5} // transition duration between images
-          duration={3} // how long an image is shown
-          // specify images to include (and their order) according to `relativePath`
-          images={["carousel/e.png"]}
-        />
-      </BGOverlay> */}
-    </div>
+    </BackgroundImage>
   )
 }
 

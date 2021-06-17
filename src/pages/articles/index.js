@@ -5,6 +5,7 @@ import Img from "gatsby-image"
 import SEO from "../../components/seo"
 
 const Articles = ({ data }) => {
+  console.log(data.articles.nodes)
   return (
     <>
       <SEO title="Articles" />

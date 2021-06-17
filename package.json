@@ -12,7 +12,7 @@
     "date-fns": "^2.16.1",
     "formik": "^2.2.5",
     "gatsby": "next",
-    "gatsby-background-image": "next",
+    "gatsby-background-image": "^1.5.3",
     "gatsby-image": "next",
     "gatsby-image-background-slider": "next",
     "gatsby-plugin-manifest": "^2.8.0",

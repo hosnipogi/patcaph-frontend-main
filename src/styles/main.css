@@ -259,3 +259,9 @@ focus {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
 }
+
+/**** june 18 ***/
+#tsparticles {
+  grid-area: 1 / 1 / 2 / 2;
+  z-index: 1;
+}

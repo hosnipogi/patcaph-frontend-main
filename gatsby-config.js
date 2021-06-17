@@ -48,6 +48,13 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `events`,
+        path: `${__dirname}/content/events`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `static`,
         path: `${__dirname}/content/staticPages`,
       },
