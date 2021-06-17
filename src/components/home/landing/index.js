@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 import BackgroundSlider from "gatsby-image-background-slider"
 import { Title, BGOverlay } from "./elements"
 
@@ -23,25 +23,38 @@ const Landing = () => {
     .map(({ relativePath }) => relativePath)
     .sort()
 
+  console.log({ slides })
+
   return (
     <div className="relative">
       <Title>
-        <h1 className="landing-title_main">
-          One goal. <br />
-          Safe sky.
-        </h1>
+        <h4 className="mb-6 text-white font-balto">
+          PATCA in cooperation with CAAP ATS presents:
+        </h4>
+        <h3 className="landing-title_main">
+          Building Psychological Resilience
+        </h3>
         <hr />
         <div className="landing-title_section">
           <h3 className="landing-title_subheading">
-            Philippine Air Traffic Controllers&apos; Association
+            A webinar concerning mental health
           </h3>
-          <h5 className="landing-title_subheading_minor">Since 1962</h5>
+          <h4 className="landing-title_subheading_minor">
+            June 23, 2021, Wednesday
+          </h4>
+          <h4 className="landing-title_subheading_minor">1:00PM - 5:30PM</h4>
           {/* <CTA
             href="https://zoom.us/meeting/register/tJcrf-6hpz0iHNHcSX1dGDjaZO3csc2GsL58"
             target="_blank"
           >
             Register to Psychological Resilience Webinar
           </CTA> */}
+          <Link
+            to="/events"
+            className="block w-8/12 p-3 mx-auto mt-10 text-xl font-bold transition duration-200 border-4 border-white lg:w-2/12 hover:bg-white hover:text-black"
+          >
+            View Event
+          </Link>
         </div>
       </Title>
       <BGOverlay>
@@ -52,7 +65,7 @@ const Landing = () => {
           transition={1.5} // transition duration between images
           duration={3} // how long an image is shown
           // specify images to include (and their order) according to `relativePath`
-          images={slides}
+          images={["carousel/e.png"]}
         />
       </BGOverlay>
     </div>

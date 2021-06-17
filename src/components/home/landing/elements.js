@@ -11,29 +11,36 @@ export const BGOverlay = styled.section`
     width: 100%;
     z-index: 2;
     background-image: radial-gradient(
+      rgb(11 10 29 / 0.72) 0,
+      rgb(11 11 23 / 76%) 37%
+    );
+    /* background-image: radial-gradient(
       circle at 70%,
       rgb(11 10 31 / 0.1) 0,
       rgb(11 11 23 / 85%) 65%
-    );
+    ); */
   }
 `
 
 export const Title = styled.div`
-  ${tw`relative z-10 text-white lg:absolute`}
-  top: 35vh;
-  left: 10vw;
+  ${tw`relative z-10 p-12 text-center text-white md:w-full lg:absolute`}
+  top: 28vh;
+  /* left: 22vw; */
   .landing-title_main {
-    ${tw`text-3xl lg:text-6xl`}
+    ${tw`text-3xl lg:text-4xl`}
+    /* ${tw`text-3xl lg:text-6xl`} */
     line-height: 4.8rem;
     color: white;
     font-family: "Balto";
   }
   hr {
-    ${tw`my-1 lg:my-3`}
+    /* ${tw`my-1 lg:my-3`} */
+    ${tw`mx-auto my-1 lg:w-8/12 lg:my-3`}
   }
   .landing-title_section {
     .landing-title_subheading {
-      ${tw`text-lg`}
+      ${tw`text-xl sm:text-lg`}
+      /* ${tw`text-lg`} */
       color: white;
       font-family: "Balto";
     }
