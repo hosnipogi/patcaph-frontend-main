@@ -117,7 +117,7 @@ const IndexPage = ({ data }) => {
         </div>
       </section>
 
-      <section className="container block w-11/12 h-full grid-cols-3 gap-4 pt-20 pb-10 mx-auto lg:grid">
+      <section className="container block w-11/12 py-20 mx-auto">
         <div>
           <h2>Social Media</h2>
           <p className="mt-4">
@@ -128,33 +128,53 @@ const IndexPage = ({ data }) => {
               rel="noreferrer"
               className="text-blue-500 hover:underline"
             >
-              facebook &rarr;
+              facebook
             </a>
           </p>
         </div>
-        <div className="flex flex-col items-center justify-center col-span-2 mt-10 lg:items-start md:justify-around md:flex-row">
+        <div className="flex flex-col justify-between mt-4 flexitems-center lg:flex-row lg:items-start">
           <iframe
-            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3426531290793225&show_text=false&width=350&appId=272423870799184&height=500"
-            width="350"
-            height="600"
+            className="flex-1"
+            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3890168947762788&show_text=false&width=500"
+            // width="500"
+            height="495"
+            // style="border:none;overflow:hidden"
             scrolling="no"
             frameBorder="0"
-            allowFullScreen={true}
+            allowFullScreen="true"
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            loading="lazy"
-            className="w-full overflow-hidden"
           ></iframe>
           <iframe
-            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3391772064269148&show_text=false&width=350&appId=272423870799184&height=500"
-            width="350"
-            height="700"
+            className="flex-1"
+            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3879193922193624&show_text=true&width=500"
+            // width="500"
+            height="495"
             scrolling="no"
             frameBorder="0"
-            allowFullScreen={true}
+            allowFullScreen="true"
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            loading="lazy"
-            className="w-full overflow-hidden"
           ></iframe>
+          <iframe
+            className="flex-1"
+            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3877104149069268&show_text=true&width=500"
+            // width="500"
+            height="495"
+            scrolling="no"
+            frameBorder="0"
+            allowFullScreen="true"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          ></iframe>
+          {/* <iframe
+            className="flex-1"
+            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3617665468346472&width=500&show_text=false&height=771&appId"
+            // width="500"
+            height="771"
+            // style="border:none;overflow:hidden"
+            scrolling="no"
+            frameBorder="0"
+            allowFullScreen="true"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          ></iframe> */}
         </div>
       </section>
     </>

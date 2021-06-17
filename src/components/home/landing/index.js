@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import BackgroundSlider from "gatsby-image-background-slider"
-import { CTA, Title, BGOverlay } from "./elements"
+import { Title, BGOverlay } from "./elements"
 
 const Landing = () => {
   const data = useStaticQuery(graphql`
@@ -34,14 +34,19 @@ const Landing = () => {
             Philippine Air Traffic Controllers&apos; Association
           </h3>
           <h5 className="landing-title_subheading_minor">Since 1962</h5>
-          <CTA href="#whatwedo">Who we are</CTA>
+          {/* <CTA
+            href="https://zoom.us/meeting/register/tJcrf-6hpz0iHNHcSX1dGDjaZO3csc2GsL58"
+            target="_blank"
+          >
+            Register to Psychological Resilience Webinar
+          </CTA> */}
         </div>
       </Title>
       <BGOverlay>
         <BackgroundSlider
           className=""
           query={data}
-          initDelay={2} // delay before the first transition (if left at 0, the first image will be skipped initially)
+          initDelay={13} // delay before the first transition (if left at 0, the first image will be skipped initially)
           transition={1.5} // transition duration between images
           duration={3} // how long an image is shown
           // specify images to include (and their order) according to `relativePath`
