@@ -1,7 +1,6 @@
 import PropTypes from "prop-types"
 import React from "react"
 import { graphql, Link } from "gatsby"
-import { Card, CardBody } from "@windmill/react-ui"
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -69,24 +68,28 @@ export default function ArticleTemplate({ data }) {
             </div>
           </div>
           <div className="w-full col-span-3 ">
-            <Card colored className="p-4 mb-4 bg-gray-100 lg:mb-10 mb-">
-              <CardBody>
-                <h3 className="font-medium text-gray-700">Archive</h3>
-                <ul className="px-4">
-                  {articles.edges.map(({ node: { frontmatter } }) => (
+            <div className="p-4 mb-4 bg-gray-100 lg:mb-10">
+              <h3 className="mb-2 font-medium text-gray-700">Archive</h3>
+              <ul className="">
+                {articles.nodes.map(
+                  ({ childMarkdownRemark: { frontmatter } }) => (
                     <Link
                       to={`/articles${frontmatter.slug}`}
                       key={frontmatter.slug}
-                      className="my-4 text-sm list-disc hover:underline cursor:pointer"
+                      className="cursor:pointer"
                     >
                       <li>
-                        {frontmatter.title} - {frontmatter.date}
+                        <div className="items-center justify-center hover:text-blue-800">
+                          <p className="pr-2 text-sm">{frontmatter.title}</p>
+                          <h6 className="text-gray-400">{frontmatter.date}</h6>
+                        </div>
+                        <hr className="my-4" />
                       </li>
                     </Link>
-                  ))}
-                </ul>
-              </CardBody>
-            </Card>
+                  )
+                )}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -118,7 +121,7 @@ ArticleTemplate.propTypes = {
 }
 
 export const query = graphql`
-  query($id: String!, $slug: StringQueryOperatorInput = { ne: null }) {
+  query($id: String!) {
     article: markdownRemark(id: { eq: $id }) {
       html
       excerpt(pruneLength: 160)
@@ -139,13 +142,16 @@ export const query = graphql`
         }
       }
     }
-    articles: allMarkdownRemark(filter: { frontmatter: { slug: $slug } }) {
-      edges {
-        node {
+    articles: allFile(
+      filter: { sourceInstanceName: { eq: "articles" }, ext: { eq: ".md" } }
+      sort: { fields: childMarkdownRemark___frontmatter___date, order: DESC }
+    ) {
+      nodes {
+        childMarkdownRemark {
           frontmatter {
+            date
             slug
             title
-            date(formatString: "MMMM DD YYYY")
           }
         }
       }

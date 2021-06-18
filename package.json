@@ -15,6 +15,7 @@
     "gatsby-background-image": "^1.5.3",
     "gatsby-image": "next",
     "gatsby-image-background-slider": "next",
+    "gatsby-plugin-google-gtag": "^3.7.1",
     "gatsby-plugin-manifest": "^2.8.0",
     "gatsby-plugin-nprogress": "^2.7.0",
     "gatsby-plugin-offline": "next",

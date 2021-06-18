@@ -9,6 +9,8 @@ if (fs.existsSync("../backend/.env")) {
   })
 }
 
+require("dotenv").config()
+
 module.exports = {
   siteMetadata: {
     title: `Philippine Air Traffic Controllers' Association`,
@@ -102,6 +104,27 @@ module.exports = {
       resolve: "gatsby-theme-gallery",
       options: {
         basePath: "/gallery",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          process.env.GA_TRACKING_ID, // Google Analytics / GA
+        ],
+        gtagConfig: {
+          // optimize_id: "OPT_CONTAINER_ID",
+          // anonymize_ip: true,
+          // cookie_expires: 0,
+        },
+        // This object is used for configuration specific to this plugin
+        pluginConfig: {
+          head: true,
+          // respectDNT: true,
+          // Avoids sending pageview hits from custom paths
+          // exclude: ["/preview/**", "/do-not-track/me/too/"],
+        },
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

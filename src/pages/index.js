@@ -34,7 +34,15 @@ const IndexPage = ({ data }) => {
               <h4>Philippine Air Traffic Controllers{"'"} Association</h4>
               <h6>Since 1962</h6>
               <h1 className="mb-8 font-bold">One Goal. Safe Sky.</h1>
-              <section className="mb-8">
+              <div className="mb-8">
+                <h3>Our Purpose</h3>
+                <p className={pStyles}>
+                  To conduct a professional and protective organization for the
+                  Air Traffic Management Officers of the Civil Aviation
+                  Authority of the Philippines.
+                </p>
+              </div>
+              <div className="">
                 <h3>Our Vision</h3>
                 <p className={pStyles}>
                   To safeguard with ceaseless vigilance the safety of the
@@ -42,15 +50,7 @@ const IndexPage = ({ data }) => {
                   trust, confidence and responsibility placed on the members of
                   PATCA.
                 </p>
-              </section>
-              <section className="">
-                <h3>Our Purpose</h3>
-                <p className={pStyles}>
-                  To conduct a professional and protective organization for the
-                  Air Traffic Management Officers of the Civil Aviation
-                  Authority of the Philippines.
-                </p>
-              </section>
+              </div>
             </div>
           </div>
         </div>

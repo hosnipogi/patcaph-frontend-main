@@ -96,10 +96,10 @@ export const Nav = styled.div`
               ${tw`inline mr-4 text-lg`}
             }
             &:first-of-type {
-              ${tw`border-gray-300 lg:border-b lg:rounded-t-lg`}
+              ${tw`border-gray-300 lg:border-b lg:rounded-t-md`}
             }
             &:last-child {
-              ${tw`border-0 lg:rounded-b-lg`}
+              ${tw`border-0 lg:rounded-b-md`}
             }
             &:hover {
               .nav__main__desktop__user__submenu__link {
