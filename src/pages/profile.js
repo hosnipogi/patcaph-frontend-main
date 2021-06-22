@@ -11,7 +11,7 @@ import Api from "../lib/services/api"
 import useAxios from "../lib/hooks/useAxios"
 import {
   AUTH_USER_MAIN_STORE_PROFILE,
-  // DASHBOARD,
+  DASHBOARD,
   PROFILE_FIELDS,
 } from "../lib/config/URLs"
 import Loading from "../components/loading"
@@ -67,7 +67,6 @@ export default function () {
 
   // handle Formik submit
   const [response, setResponse] = useState({ success: false })
-  console.log(response)
   const handleSubmit = async (values, submitProps) => {
     const api = new Api({
       url: AUTH_USER_MAIN_STORE_PROFILE,
@@ -80,7 +79,7 @@ export default function () {
 
     try {
       await api.fetch()
-      // setTimeout(() => (window.location.href = DASHBOARD), 3000)
+      setTimeout(() => (window.location.href = DASHBOARD), 3000)
     } catch (e) {
       api.abort()
       console.log(e)
@@ -100,30 +99,30 @@ export default function () {
       </div>
 
       {fields !== null ? (
-        // !response.success ? (
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          {formik => (
-            <FormProvider value={{ formik, stuffForChildren }}>
-              <Nav />
-              <Form>
-                <Router basepath="/profile">
-                  <PersonalInformation path="/personal" />
-                  <EmploymentInformation path="/employment" />
-                  <PhotoUpload path="/photo" />
-                  <Review path="/review" />
-                </Router>
-              </Form>
-            </FormProvider>
-          )}
-        </Formik>
+        !response.success ? (
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+          >
+            {formik => (
+              <FormProvider value={{ formik, stuffForChildren }}>
+                <Nav />
+                <Form>
+                  <Router basepath="/profile">
+                    <PersonalInformation path="/personal" />
+                    <EmploymentInformation path="/employment" />
+                    <PhotoUpload path="/photo" />
+                    <Review path="/review" />
+                  </Router>
+                </Form>
+              </FormProvider>
+            )}
+          </Formik>
+        ) : (
+          <div>{response.message}</div>
+        )
       ) : (
-        // ) : (
-        //   <div>{response.message}</div>
-        // )
         <Loading />
       )}
     </>
