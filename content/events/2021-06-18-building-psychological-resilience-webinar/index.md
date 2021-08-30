@@ -9,6 +9,6 @@ featuredImage:
 external_url: "https://zoom.us/meeting/register/tJcrf-6hpz0iHNHcSX1dGDjaZO3csc2GsL58"
 ---
 
-Click <a href="https://zoom.us/meeting/register/tJcrf-6hpz0iHNHcSX1dGDjaZO3csc2GsL58" target="_blank" rel="noreferrer" style="color:blue;text-decoration:underline">here</a> to register.
+<!-- Click <a href="https://zoom.us/meeting/register/tJcrf-6hpz0iHNHcSX1dGDjaZO3csc2GsL58" target="_blank" rel="noreferrer" style="color:blue;text-decoration:underline">here</a> to register. -->
 
 <!-- ![Building Psychological Resilience Webinar](./webinar.jpg) -->

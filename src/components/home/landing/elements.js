@@ -11,36 +11,29 @@ export const BGOverlay = styled.section`
     width: 100%;
     z-index: 2;
     background-image: radial-gradient(
-      rgb(11 10 29 / 0.72) 0,
-      rgb(11 11 23 / 76%) 37%
-    );
-    /* background-image: radial-gradient(
       circle at 70%,
       rgb(11 10 31 / 0.1) 0,
       rgb(11 11 23 / 85%) 65%
-    ); */
+    );
   }
 `
 
 export const Title = styled.div`
-  ${tw`p-4 text-center text-white`}
-  /* top: 28vh; */
-  /* left: 22vw; */
+  ${tw`relative z-10 text-white lg:absolute`}
+  top: 35vh;
+  left: 10vw;
   .landing-title_main {
-    ${tw`text-3xl lg:text-4xl`}
-    /* ${tw`text-3xl lg:text-6xl`} */
+    ${tw`text-3xl lg:text-6xl`}
     line-height: 4.8rem;
     color: white;
     font-family: "Balto";
   }
   hr {
-    /* ${tw`my-1 lg:my-3`} */
-    ${tw`mx-auto my-1 lg:my-3`}
+    ${tw`my-1 lg:my-3`}
   }
   .landing-title_section {
     .landing-title_subheading {
-      ${tw`text-xl sm:text-lg`}
-      /* ${tw`text-lg`} */
+      ${tw`text-lg`}
       color: white;
       font-family: "Balto";
     }
@@ -51,17 +44,17 @@ export const Title = styled.div`
     }
   }
   @media (max-width: 1024px) {
-    /* top: 0;
-    left: 0; */
-    /* padding: 20vmin; */
+    top: 0;
+    left: 0;
+    padding: 20vmin;
     .landing-title_main {
       line-height: initial;
     }
   }
   @media (max-width: 760px) {
-    /* top: 0;
-    left: 0; */
-    /* padding: 25vh 4rem; */
+    top: 0;
+    left: 0;
+    padding: 25vh 4rem;
     .landing-title_main {
       line-height: initial;
     }

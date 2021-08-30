@@ -21,21 +21,15 @@ const IndexPage = ({ data }) => {
       <Landing fallback={<Loading inline={false} />} />
 
       <section className="container flex items-center justify-center py-0 mx-auto my-8 lg:my-24">
-        {/* <section className="container flex items-center justify-center py-10 mx-auto lg:h-screen lg:py-4"> */}
         <div className="mx-auto">
           <div className="flex flex-col w-11/12 mx-auto lg:flex-row">
-            {/* <div className="lg:-mt-32"> */}
             <Img
               fluid={tower.childImageSharp.fluid}
               className="w-full lg:w-9/12"
             />
-            {/* <section className="relative w-full mt-8 bg-white lg:w-1/2 lg:p-8 lg:float-right lg:-mt-32 z-1"> */}
             <div className="relative w-full px-0 mt-4 lg:w-3/12 lg:mt-0 lg:pl-6">
-              <h4>Philippine Air Traffic Controllers{"'"} Association</h4>
-              <h6>Since 1962</h6>
-              <h1 className="mb-8 font-bold">One Goal. Safe Sky.</h1>
               <div className="mb-8">
-                <h3>Our Purpose</h3>
+                <h2>Our Purpose</h2>
                 <p className={pStyles}>
                   To conduct a professional and protective organization for the
                   Air Traffic Management Officers of the Civil Aviation
@@ -43,7 +37,7 @@ const IndexPage = ({ data }) => {
                 </p>
               </div>
               <div className="">
-                <h3>Our Vision</h3>
+                <h2>Our Vision</h2>
                 <p className={pStyles}>
                   To safeguard with ceaseless vigilance the safety of the
                   aviation industry in recognition of the high degree of public
