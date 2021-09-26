@@ -100,8 +100,7 @@ export default function Login() {
                     />
                     <Submit
                       label="Login &rarr;"
-                      disabled={true}
-                      // disabled={!formik.isValid}
+                      disabled={!formik.isValid}
                       isSubmitting={formik.isSubmitting}
                     />
                   </Form>

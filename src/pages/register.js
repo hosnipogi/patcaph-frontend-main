@@ -107,8 +107,7 @@ const Register = () => {
                   </p>
                   <Submit
                     label="Register"
-                    // disabled={!formik.isValid}
-                    disabled={true}
+                    disabled={!formik.isValid}
                     isSubmitting={formik.isSubmitting}
                   />
                 </Form>

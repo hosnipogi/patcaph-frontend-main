@@ -106,7 +106,7 @@ function EmploymentInformation() {
 
       <Card className="pt-4 mb-4 overflow-visible lg:border lg:px-4">
         <h6 className="mb-2">
-          Facility Assignment History (Start with latest)
+          Facility Assignment History
         </h6>
 
         <FieldArray name="facility">

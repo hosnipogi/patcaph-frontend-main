@@ -27,6 +27,10 @@ const Review = () => {
   const { values, dirty, isValid, isSubmitting, errors } = formik
   const { facility } = values
 
+  const sortedFacility = facility.sort(function (a, b) {
+    return new Date(a.from).getTime() - new Date(b.from).getTime()
+  })
+
   return (
     <div className="flex-col">
       <div className="block w-full">
@@ -61,9 +65,7 @@ const Review = () => {
                 <div className="grid-cols-2 gap-4 lg:grid">
                   <div>
                     <h6>Birthday</h6>
-                    <CustomCard>
-                      {values.birthday}
-                    </CustomCard>
+                    <CustomCard>{values.birthday}</CustomCard>
                   </div>
                   <div>
                     <h6>Birthplace</h6>
@@ -84,9 +86,7 @@ const Review = () => {
                   </div>
                   <div>
                     <h6>Date Employed</h6>
-                    <CustomCard>
-                      {values.dateEmployed}
-                    </CustomCard>
+                    <CustomCard>{values.dateEmployed}</CustomCard>
                   </div>
                 </div>
                 <div className="grid-cols-3 gap-4 lg:grid">
@@ -96,16 +96,11 @@ const Review = () => {
                   </div>
                   <div>
                     <h6>ATC License Expiry</h6>
-                    <CustomCard>
-                      {values.ATCLicenseExpiry}
-                    </CustomCard>
+                    <CustomCard>{values.ATCLicenseExpiry}</CustomCard>
                   </div>
                   <div>
                     <h6>Medical License Expiry</h6>
-                    <CustomCard>
-                      {" "}
-                      {values.medicalLicenseExpiry}
-                    </CustomCard>
+                    <CustomCard> {values.medicalLicenseExpiry}</CustomCard>
                   </div>
                 </div>
               </CustomCard>
@@ -123,17 +118,13 @@ const Review = () => {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {facility.map((fac, index) => {
+                      {sortedFacility.map((fac, index) => {
                         return (
                           <TableRow key={index}>
                             <TableCell>{fac.facility}</TableCell>
                             <TableCell>{fac.area}</TableCell>
-                            <TableCell>
-                              {fac.from}
-                            </TableCell>
-                            <TableCell>
-                              {fac.to}
-                            </TableCell>
+                            <TableCell>{fac.from}</TableCell>
+                            <TableCell>{fac.to}</TableCell>
                             <TableCell>{fac.designation}</TableCell>
                           </TableRow>
                         )
