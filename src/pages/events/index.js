@@ -12,7 +12,7 @@ const events = ({ data }) => {
   const pastEvents = []
 
   events.forEach(({ node }) => {
-    const event_date = node.childMarkdownRemark.frontmatter.event_date
+    const event_date = node.childMarkdownRemark.frontmatter.date
     const eventDate = new Date(event_date).getTime()
     if (eventDate > dateToday) {
       upcomingEvents.push(node)
@@ -35,44 +35,42 @@ const events = ({ data }) => {
   )
 }
 
-const Posts = ({ events }) => {
-  return (
-    <>
-      <SEO title="Events" />
-      <div>
-        <ul className="pl-5 my-4 list-decimal">
-          {events.map(({ childMarkdownRemark: { frontmatter, html } }) => (
-            <li key={frontmatter.title} className="mb-4">
-              <div className="mb-4">
-                <h4>{frontmatter.title}</h4>
-                <p>
-                  {new Date(frontmatter.event_date).toDateString()}
-                  {", "}
-                  {frontmatter.event_time}
-                </p>
-                <div
-                  className="post-content"
-                  dangerouslySetInnerHTML={{ __html: html }}
+const Posts = ({ events }) => (
+  <>
+    <SEO title="Events" />
+    <div>
+      <ul className="pl-5 my-4 list-decimal">
+        {events.map(({ childMarkdownRemark: { frontmatter, html } }) => (
+          <li key={frontmatter.title} className="mb-4">
+            <div className="mb-4">
+              <h4>{frontmatter.title}</h4>
+              <p>
+                {new Date(frontmatter.date).toDateString()}
+                {frontmatter.time && ", "}
+                {frontmatter.time}
+              </p>
+              <div
+                className="post-content"
+                dangerouslySetInnerHTML={{ __html: html }}
+              />
+              <a
+                href={frontmatter.external_url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Img
+                  fluid={frontmatter.featuredImage.src.childImageSharp.fluid}
+                  className=""
                 />
-                <a
-                  href={frontmatter.external_url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Img
-                    fluid={frontmatter.featuredImage.src.childImageSharp.fluid}
-                    className=""
-                  />
-                </a>
-              </div>
-              <hr />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </>
-  )
-}
+              </a>
+            </div>
+            <hr />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </>
+)
 
 export default events
 
@@ -80,17 +78,14 @@ export const eventsQuery = graphql`
   {
     allFile(
       filter: { sourceInstanceName: { eq: "events" }, ext: { eq: ".md" } }
-      sort: {
-        fields: childMarkdownRemark___frontmatter___event_date
-        order: DESC
-      }
+      sort: { fields: childMarkdownRemark___frontmatter___date, order: DESC }
     ) {
       edges {
         node {
           childMarkdownRemark {
             frontmatter {
-              event_date
-              event_time
+              date
+              time
               external_url
               slug
               featuredImage {

@@ -64,7 +64,7 @@
     "prettier": "2.1.2",
     "react-test-renderer": "^17.0.1",
     "start-server-and-test": "^1.11.7",
-    "tailwindcss": "^2.0.1",
+    "tailwindcss": "^2.1",
     "twin.macro": "^2.0.4"
   },
   "keywords": [

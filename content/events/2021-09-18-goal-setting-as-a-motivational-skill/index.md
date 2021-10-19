@@ -1,7 +1,7 @@
 ---
 slug: "/goal-setting-as-a-motivational-skill"
-event_date: "2021-09-28"
-event_time: "1:00PM - 3:00PM"
+date: "2021-09-28"
+time: "1:00PM - 3:00PM"
 title: "Goal Setting as a Motivational Skill"
 featuredImage:
   alt: "Goal Setting as a Motivational Skill"

@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import PropTypes from "prop-types"
-import React from "react"
+import React, { useState } from "react"
 import { graphql, Link } from "gatsby"
 import loadable from "@loadable/component"
 import SEO from "../components/seo"
@@ -14,15 +14,92 @@ const pStyles = ""
 
 const IndexPage = ({ data }) => {
   const { tower, articles } = data
-
+  const latestNews = articles.nodes[0].childMarkdownRemark
+  const ytVidIds = ["g48AqQu2mPs", "H8FKgulJmGw", "AF9CX6YDp5I"]
+  const [vidId, setVidId] = useState(ytVidIds[0])
+  console.log({ vidId, setVidId, VideoPlayer })
   return (
     <>
       <SEO title="Home" />
       <Landing fallback={<Loading inline={false} />} />
 
-      <section className="container flex items-center justify-center py-0 mx-auto my-8 lg:my-24">
-        <div className="mx-auto">
-          <div className="flex flex-col w-11/12 mx-auto lg:flex-row">
+      <section className="mt-10">
+        <div className="container w-11/12 mx-auto">
+          <h2>News and Events</h2>
+          <hr className="mb-4" />
+          <div className="">
+            <div className="grid gap-6 md:grid-cols-4">
+              <div className="md:col-span-3">
+                <Link
+                  to={`/articles${latestNews.frontmatter.slug}`}
+                  key={latestNews.frontmatter.title}
+                >
+                  <div className="cursor-pointer">
+                    {latestNews.frontmatter.featuredImage && (
+                      <Img
+                        fluid={
+                          latestNews.frontmatter.featuredImage.src
+                            .childImageSharp.fluid
+                        }
+                        alt={latestNews.frontmatter.title}
+                        className="m-h-80"
+                      />
+                    )}
+                    <div className="pt-2">
+                      <h5 className="tracking-normal">
+                        {latestNews.frontmatter.title}
+                      </h5>
+                      <small className="block mb-4 text-xs">
+                        {latestNews.frontmatter.date}
+                      </small>
+                      <p className={`${pStyles} text-sm`}>
+                        {latestNews.excerpt}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div>
+                {articles.nodes.slice(1).map(article => (
+                  <Link
+                    to={`/articles${article.childMarkdownRemark.frontmatter.slug}`}
+                    key={article.childMarkdownRemark.frontmatter.title}
+                    className="hover:text-yellow-600"
+                  >
+                    <div className="cursor-pointer">
+                      {article.childMarkdownRemark.frontmatter
+                        .featuredImage && (
+                        <Img
+                          fluid={
+                            article.childMarkdownRemark.frontmatter
+                              .featuredImage.src.childImageSharp.fluid
+                          }
+                          alt={article.childMarkdownRemark.frontmatter.title}
+                          className="h-48"
+                        />
+                      )}
+                      <div>
+                        <h6 className="inline p-1 tracking-normal text-white bg-gray-400 rounded-sm">
+                          {article.childMarkdownRemark.frontmatter.title}
+                        </h6>
+                        <small className="block mb-4 text-xs">
+                          {article.childMarkdownRemark.frontmatter.date}
+                        </small>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="container w-11/12 py-0 mx-auto my-8 lg:my-16">
+        <div>
+          <h2>Who We Are</h2>
+          <hr className="mb-10" />
+          <div className="flex flex-col lg:flex-row">
             <Img
               fluid={tower.childImageSharp.fluid}
               className="w-full lg:w-9/12"
@@ -53,134 +130,72 @@ const IndexPage = ({ data }) => {
       {/* React slick carousel here */}
       <WhatWeDo />
 
-      <section className="container w-11/12 py-20 mx-auto">
-        <div className="text-center">
-          <h5>media</h5>
-          <h2>Discover PATCA</h2>
-        </div>
-        <div className="grid-cols-2 gap-4 lg:grid">
-          <VideoPlayer url="https://www.youtube.com/watch?v=H8FKgulJmGw&t=3s" />
-          <VideoPlayer url="https://www.youtube.com/watch?v=AF9CX6YDp5I" />
-        </div>
-      </section>
-
-      <section className="py-20 bg-gray-200">
-        <div className="container w-11/12 mx-auto">
-          <div className="block grid-cols-3 gap-4 lg:grid">
-            <div>
-              <h2>Latest News</h2>
-              <p className={pStyles}>
-                Discover the latest new, media statements and other
-                announcements from PATCA.
-              </p>
-              <Link
-                to="/articles"
-                className="block pr-10 my-4 text-right text-blue-500 lg:my-6 hover:underline"
-              >
-                Read more &rarr;
-              </Link>
-            </div>
-            <div className="flex flex-row justify-around col-span-2">
-              <div className="grid gap-2 md:grid-cols-2">
-                {articles.nodes.map(article => (
-                  <Link
-                    to={`/articles${article.childMarkdownRemark.frontmatter.slug}`}
-                    key={article.childMarkdownRemark.frontmatter.title}
-                  >
-                    <div
-                      className="transition-all duration-100 bg-white border-gray-100 shadow-md cursor-pointer hover:shadow-xl"
-                      style={{ minHeight: "420px" }}
-                    >
-                      {article.childMarkdownRemark.frontmatter
-                        .featuredImage && (
-                        <Img
-                          fluid={
-                            article.childMarkdownRemark.frontmatter
-                              .featuredImage.src.childImageSharp.fluid
-                          }
-                          alt={article.childMarkdownRemark.frontmatter.title}
-                          className="object-cover w-full h-64"
-                        />
-                      )}
-                      <div className="p-2">
-                        <h5 className="mb-2 tracking-normal">
-                          {article.childMarkdownRemark.frontmatter.title}
-                          <small>
-                            &nbsp;
-                            {article.childMarkdownRemark.frontmatter.date}
-                          </small>
-                        </h5>
-                        <p className={`${pStyles} text-sm`}>
-                          {article.childMarkdownRemark.excerpt}
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
+      <section className="container w-11/12 py-20 mx-auto" id="discover_patca">
+        <h2>Discover PATCA</h2>
+        <hr className="mb-6" />
+        <div className="videos">
+          <VideoPlayer url={`https://www.youtube.com/watch?v=${vidId}`} />
+          <div className="flex flex-row justify-between">
+            {ytVidIds.map(id => (
+              <img
+                key={id}
+                src={`https://img.youtube.com/vi/${id}/sddefault.jpg`}
+                onClick={() =>
+                  setVidId(`https://www.youtube.com/watch?v=${id}`)
+                }
+                className="w-1/3 px-1 cursor-pointer md:px-2"
+              />
+            ))}
           </div>
         </div>
-      </section>
-
-      <section className="container block w-11/12 py-20 mx-auto">
-        <div>
-          <h2>Social Media</h2>
-          <p className="mt-4">
-            Follow us on&nbsp;
-            <a
-              href="https://www.facebook.com/PATCA1962"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-500 hover:underline"
-            >
-              facebook
-            </a>
-          </p>
-        </div>
-        <div className="flex flex-col justify-between mt-4 flexitems-center lg:flex-row lg:items-start">
-          <iframe
-            className="flex-1"
-            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3890168947762788&show_text=false&width=500"
-            // width="500"
-            height="495"
-            // style="border:none;overflow:hidden"
-            scrolling="no"
-            frameBorder="0"
-            allowFullScreen={true}
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          ></iframe>
-          <iframe
-            className="flex-1"
-            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3879193922193624&show_text=true&width=500"
-            // width="500"
-            height="495"
-            scrolling="no"
-            frameBorder="0"
-            allowFullScreen={true}
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          ></iframe>
-          <iframe
-            className="flex-1"
-            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3877104149069268&show_text=true&width=500"
-            // width="500"
-            height="495"
-            scrolling="no"
-            frameBorder="0"
-            allowFullScreen={true}
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          ></iframe>
-          {/* <iframe
-            className="flex-1"
-            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3617665468346472&width=500&show_text=false&height=771&appId"
-            // width="500"
-            height="771"
-            // style="border:none;overflow:hidden"
-            scrolling="no"
-            frameBorder="0"
-            allowFullScreen="true"
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          ></iframe> */}
+        <div className="socialMedia">
+          <div className="my-8">
+            <h3>Social Media</h3>
+            <p className="mt-4">
+              Follow us on&nbsp;
+              <a
+                href="https://www.facebook.com/PATCA1962"
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-500 hover:underline"
+              >
+                facebook
+              </a>
+            </p>
+          </div>
+          <div className="flex flex-col justify-between mt-4 flexitems-center lg:flex-row lg:items-start">
+            <iframe
+              className="flex-1"
+              src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3890168947762788&show_text=false&width=500"
+              // width="500"
+              height="495"
+              // style="border:none;overflow:hidden"
+              scrolling="no"
+              frameBorder="0"
+              allowFullScreen={true}
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            ></iframe>
+            <iframe
+              className="flex-1"
+              src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3879193922193624&show_text=true&width=500"
+              // width="500"
+              height="495"
+              scrolling="no"
+              frameBorder="0"
+              allowFullScreen={true}
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            ></iframe>
+            <iframe
+              className="flex-1"
+              src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3877104149069268&show_text=true&width=500"
+              // width="500"
+              height="495"
+              scrolling="no"
+              frameBorder="0"
+              allowFullScreen={true}
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            ></iframe>
+          </div>
         </div>
       </section>
     </>
@@ -204,12 +219,12 @@ export const query = graphql`
     }
     articles: allFile(
       filter: {
-        sourceInstanceName: { eq: "articles" }
+        sourceInstanceName: { regex: "/(articles|events)/" }
         childMarkdownRemark: { rawMarkdownBody: {} }
         extension: { eq: "md" }
       }
       sort: { fields: childMarkdownRemark___frontmatter___date, order: DESC }
-      limit: 2
+      limit: 4
     ) {
       nodes {
         childMarkdownRemark {
@@ -228,7 +243,7 @@ export const query = graphql`
             slug
             title
           }
-          excerpt
+          excerpt(pruneLength: 400)
         }
       }
     }

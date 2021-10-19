@@ -1,7 +1,7 @@
 ---
 slug: "/building-psychological-resilience-webinar"
-event_date: "2021-06-23"
-event_time: "1:00PM - 5:30PM"
+date: "2021-06-23"
+time: "1:00PM - 5:30PM"
 title: "Building Psychological Resilience Webinar"
 featuredImage:
   alt: "Building Psychological Resilience Webinar"
