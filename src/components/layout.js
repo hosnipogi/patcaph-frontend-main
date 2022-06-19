@@ -29,8 +29,7 @@ const Layout = ({ children, location }) => {
     <>
       <Header location={pathname} routes={routes} />
       <main className={path != "/" ? "lg:bg-gray-50 lg:pb-12" : undefined}>
-        {path !== "/" &&
-        !pathname?.match(/\/articles\/[a-zA-Z0-9]+/g)?.length ? (
+        {path !== "/" && !pathname?.match(/\/blogs\/[a-zA-Z0-9]+/g)?.length ? (
           <div
             className={`container w-11/12 ${
               path !== "/" ? "lg:px-4 py-4" : "py-4"

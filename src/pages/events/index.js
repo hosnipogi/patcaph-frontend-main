@@ -43,34 +43,37 @@ const Posts = ({ events }) => {
       <SEO title="Events" />
       <div>
         <ul className="pl-5 my-4 list-decimal">
-          {events.map(({ childMarkdownRemark: { frontmatter } }) => (
-            <li key={frontmatter.title} className="mb-4">
-              <div className="mb-4">
-                <h4>{frontmatter.title}</h4>
-                <p>
-                  {new Date(frontmatter.date).toDateString()}
-                  {frontmatter.time && ", "}
-                  {frontmatter.time}
-                </p>
-                <p>{frontmatter.subtitle}</p>
-                {/* <div
-                  className="post-content"
-                  dangerouslySetInnerHTML={{ __html: html }}
-                /> */}
-                <a
-                  href={frontmatter.external_url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Img
-                    fluid={frontmatter.featuredImage.src.childImageSharp.fluid}
-                    className=""
+          {events.map(({ childMarkdownRemark: { frontmatter } }) => {
+            console.log({ frontmatter })
+            return (
+              <li key={frontmatter.title} className="mb-4">
+                <div className="mb-4">
+                  <h4>{frontmatter.title}</h4>
+                  <p>
+                    {new Date(frontmatter.date).toDateString()}
+                    {frontmatter.time && ", "}
+                    {frontmatter.time}
+                  </p>
+                  <p
+                    dangerouslySetInnerHTML={{ __html: frontmatter.subtitle }}
                   />
-                </a>
-              </div>
-              <hr />
-            </li>
-          ))}
+                  <a
+                    href={frontmatter.external_url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Img
+                      fluid={
+                        frontmatter.featuredImage.src.childImageSharp.fluid
+                      }
+                      className=""
+                    />
+                  </a>
+                </div>
+                <hr />
+              </li>
+            )
+          })}
         </ul>
       </div>
     </>
@@ -93,6 +96,7 @@ export const eventsQuery = graphql`
               time
               external_url
               slug
+              subtitle
               featuredImage {
                 src {
                   childImageSharp {

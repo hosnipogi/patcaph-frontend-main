@@ -21,7 +21,7 @@ import { VscOrganization } from "react-icons/vsc"
 
 const generateIcon = route => {
   switch (route) {
-    case "/articles":
+    case "/blog":
       return (
         <RiArticleLine className="nav__main__desktop__routes__links__icon" />
       )
@@ -119,7 +119,7 @@ const Nav = ({ path, routes }) => {
                   ))
               )}
             </div>
-            <hr />
+            <hr className="mb-0 border-gray-300" />
             <div className="nav__main__desktop__user">
               {
                 user ? (
@@ -181,8 +181,20 @@ const Nav = ({ path, routes }) => {
                     </div>
                   </>
                 ) : (
-                  <Link to="/Ifatca">
-                    <div className="text-blue-600">IFATCA 2022</div>
+                  <Link to="/aprm-2022">
+                    <Link
+                      className="nav__main__desktop__routes__links"
+                      to="/aprm-2022-registration"
+                    >
+                      <span>IFATCA APRM 2022 Registration</span>
+                      <span
+                        role="img"
+                        className="ml-1"
+                        aria-label="Philippines"
+                      >
+                        🇵🇭
+                      </span>
+                    </Link>
                   </Link>
                 )
                 // <>

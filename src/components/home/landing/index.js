@@ -2,8 +2,6 @@ import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import BackgroundSlider from "gatsby-image-background-slider"
 import { BGOverlay, Title } from "./elements"
-// import Particles from "react-particles-js"
-// import BackgroundImage from "gatsby-background-image"
 
 const Landing = () => {
   const data = useStaticQuery(graphql`

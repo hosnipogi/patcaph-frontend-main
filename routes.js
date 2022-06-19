@@ -7,8 +7,8 @@ module.exports = [
     showInFooter: true,
   },
   {
-    name: "Blog",
-    path: "/blog",
+    name: "Blogs",
+    path: "/blogs",
     showInHeader: true,
     showInFooter: true,
   },
@@ -57,6 +57,12 @@ module.exports = [
   {
     name: "Terms and Conditions",
     path: "/terms",
+    showInHeader: false,
+    showInFooter: false,
+  },
+  {
+    name: "APRM 2022 Registration",
+    path: "/aprm-2022-registration",
     showInHeader: false,
     showInFooter: false,
   },

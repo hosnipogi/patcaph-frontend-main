@@ -19,8 +19,8 @@ const VideoPlayer = loadable(() => import("../components/videoPlayer"))
 const pStyles = ""
 
 const IndexPage = ({ data }) => {
-  const { tower, articles } = data
-  const latestNews = articles.nodes[0].childMarkdownRemark
+  const { tower, blogs } = data
+  const latestNews = blogs.nodes[0].childMarkdownRemark
   const [vidId, setVidId] = useState(YOUTUBE_VID_IDS[0])
 
   return (
@@ -36,7 +36,7 @@ const IndexPage = ({ data }) => {
             <div className="grid gap-6 md:grid-cols-4">
               <div className="md:col-span-3">
                 <Link
-                  to={`/articles${latestNews.frontmatter.slug}`}
+                  to={`/blogs${latestNews.frontmatter.slug}`}
                   key={latestNews.frontmatter.title}
                 >
                   <div className="cursor-pointer">
@@ -65,35 +65,36 @@ const IndexPage = ({ data }) => {
                 </Link>
               </div>
               <div>
-                {articles.nodes.slice(1).map(article => (
-                  <Link
-                    to={`/articles${article.childMarkdownRemark.frontmatter.slug}`}
-                    key={article.childMarkdownRemark.frontmatter.title}
-                    className="hover:text-yellow-600"
-                  >
-                    <div className="cursor-pointer">
-                      {article.childMarkdownRemark.frontmatter
-                        .featuredImage && (
-                        <Img
-                          fluid={
-                            article.childMarkdownRemark.frontmatter
-                              .featuredImage.src.childImageSharp.fluid
-                          }
-                          alt={article.childMarkdownRemark.frontmatter.title}
-                          className="h-48"
-                        />
-                      )}
-                      <div>
-                        <h6 className="inline p-1 tracking-normal text-white bg-gray-400 rounded-sm">
-                          {article.childMarkdownRemark.frontmatter.title}
-                        </h6>
-                        <small className="block mb-4 text-xs">
-                          {article.childMarkdownRemark.frontmatter.date}
-                        </small>
+                {blogs.nodes
+                  .slice(1)
+                  .map(({ childMarkdownRemark: { frontmatter } }) => (
+                    <Link
+                      to={`/blogs${frontmatter.slug}`}
+                      key={frontmatter.title}
+                      className="hover:text-yellow-600"
+                    >
+                      <div className="cursor-pointer">
+                        {frontmatter.featuredImage && (
+                          <Img
+                            fluid={
+                              frontmatter.featuredImage.src.childImageSharp
+                                .fluid
+                            }
+                            alt={frontmatter.title}
+                            className="h-48"
+                          />
+                        )}
+                        <div>
+                          <h6 className="inline p-1 tracking-normal text-white bg-gray-400 rounded-sm">
+                            {frontmatter.title}
+                          </h6>
+                          <small className="block mb-4 text-xs">
+                            {frontmatter.date}
+                          </small>
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  ))}
               </div>
             </div>
           </div>
@@ -204,9 +205,9 @@ export const query = graphql`
         }
       }
     }
-    articles: allFile(
+    blogs: allFile(
       filter: {
-        sourceInstanceName: { regex: "/(articles|events)/" }
+        sourceInstanceName: { regex: "/(blogs|events)/" }
         childMarkdownRemark: { rawMarkdownBody: {} }
         extension: { eq: "md" }
       }

@@ -13,8 +13,8 @@ import "../../styles/md.css"
 import SEO from "../../components/seo"
 
 export default function ArticleTemplate({ data }) {
-  const { article, articles } = data
-  const { frontmatter, html, excerpt } = article
+  const { blog, blogs } = data
+  const { frontmatter, html, excerpt } = blog
 
   return (
     <>
@@ -32,7 +32,7 @@ export default function ArticleTemplate({ data }) {
           <div className="col-span-9">
             <div className="mb-8">
               <Link
-                to="/articles"
+                to="/blogs"
                 className="font-semibold text-blue-500 hover:underline "
               >
                 &larr; Back
@@ -54,13 +54,13 @@ export default function ArticleTemplate({ data }) {
               <span className="mr-4">Share this post</span>
               <span>
                 <FacebookShareButton
-                  url={`${HOME_URL}/articles${frontmatter.slug}`}
+                  url={`${HOME_URL}/blogs${frontmatter.slug}`}
                   className="mr-2"
                 >
                   <FacebookIcon size="40" round="true" />
                 </FacebookShareButton>
                 <TwitterShareButton
-                  url={`${HOME_URL}/articles${frontmatter.slug}`}
+                  url={`${HOME_URL}/blogs${frontmatter.slug}`}
                 >
                   <TwitterIcon size="40" round="true" />
                 </TwitterShareButton>
@@ -71,23 +71,21 @@ export default function ArticleTemplate({ data }) {
             <div className="p-4 mb-4 bg-gray-100 lg:mb-10">
               <h3 className="mb-2 font-medium text-gray-700">Archive</h3>
               <ul className="">
-                {articles.nodes.map(
-                  ({ childMarkdownRemark: { frontmatter } }) => (
-                    <Link
-                      to={`/articles${frontmatter.slug}`}
-                      key={frontmatter.slug}
-                      className="cursor:pointer"
-                    >
-                      <li>
-                        <div className="items-center justify-center hover:text-blue-800">
-                          <p className="pr-2 text-sm">{frontmatter.title}</p>
-                          <h6 className="text-gray-400">{frontmatter.date}</h6>
-                        </div>
-                        <hr className="my-4" />
-                      </li>
-                    </Link>
-                  )
-                )}
+                {blogs.nodes.map(({ childMarkdownRemark: { frontmatter } }) => (
+                  <Link
+                    to={`/blogs${frontmatter.slug}`}
+                    key={frontmatter.slug}
+                    className="cursor:pointer"
+                  >
+                    <li>
+                      <div className="items-center justify-center hover:text-blue-800">
+                        <p className="pr-2 text-sm">{frontmatter.title}</p>
+                        <h6 className="text-gray-400">{frontmatter.date}</h6>
+                      </div>
+                      <hr className="my-4" />
+                    </li>
+                  </Link>
+                ))}
               </ul>
             </div>
           </div>
@@ -99,7 +97,7 @@ export default function ArticleTemplate({ data }) {
 
 ArticleTemplate.propTypes = {
   data: PropTypes.shape({
-    article: PropTypes.shape({
+    blog: PropTypes.shape({
       excerpt: PropTypes.string,
       frontmatter: PropTypes.shape({
         author: PropTypes.string,
@@ -116,13 +114,13 @@ ArticleTemplate.propTypes = {
       }),
       html: PropTypes.string,
     }),
-    articles: PropTypes.object,
+    blogs: PropTypes.object,
   }),
 }
 
 export const query = graphql`
   query($id: String!) {
-    article: markdownRemark(id: { eq: $id }) {
+    blog: markdownRemark(id: { eq: $id }) {
       html
       excerpt(pruneLength: 160)
       frontmatter {
@@ -142,8 +140,8 @@ export const query = graphql`
         }
       }
     }
-    articles: allFile(
-      filter: { sourceInstanceName: { eq: "articles" }, ext: { eq: ".md" } }
+    blogs: allFile(
+      filter: { sourceInstanceName: { eq: "blogs" }, ext: { eq: ".md" } }
       sort: { fields: childMarkdownRemark___frontmatter___date, order: DESC }
     ) {
       nodes {

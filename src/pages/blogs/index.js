@@ -8,26 +8,26 @@ const Articles = ({ data }) => (
   <>
     <SEO title="Articles" />
     <ul className="">
-      {data.articles.nodes.map(article => (
-        <li className="my-4" key={article.childMarkdownRemark.frontmatter.slug}>
-          <Link to={`/articles${article.childMarkdownRemark.frontmatter.slug}`}>
+      {data.blogs.nodes.map(blog => (
+        <li className="my-4" key={blog.childMarkdownRemark.frontmatter.slug}>
+          <Link to={`/blogs${blog.childMarkdownRemark.frontmatter.slug}`}>
             <div className="flex flex-col mb-4 lg:flex-row md:flex-row">
               <Img
                 fluid={
-                  article.childMarkdownRemark.frontmatter.featuredImage.src
+                  blog.childMarkdownRemark.frontmatter.featuredImage.src
                     .childImageSharp.fluid
                 }
                 className="object-cover mb-2 lg:mb-0 md:mb-0 lg:w-4/12"
               />
               <div className="lg:px-4 md:px-4 lg:w-4/12">
-                <h6>{article.childMarkdownRemark.frontmatter.date}</h6>
-                <h6>{article.childMarkdownRemark.frontmatter.author}</h6>
+                <h6>{blog.childMarkdownRemark.frontmatter.date}</h6>
+                <h6>{blog.childMarkdownRemark.frontmatter.author}</h6>
                 <h4 className="mb-4 tracking-normal normal-case hover:text-blue-700">
-                  {article.childMarkdownRemark.frontmatter.title}
+                  {blog.childMarkdownRemark.frontmatter.title}
                 </h4>
               </div>
               <div className="lg:px-4 md:px-4 lg:w-4/12">
-                <p>{article.childMarkdownRemark.excerpt}</p>
+                <p>{blog.childMarkdownRemark.excerpt}</p>
               </div>
             </div>
             <hr />
@@ -46,11 +46,8 @@ export default Articles
 
 export const articlesQuery = graphql`
   {
-    articles: allFile(
-      filter: {
-        sourceInstanceName: { eq: "articles" }
-        extension: { eq: "md" }
-      }
+    blogs: allFile(
+      filter: { sourceInstanceName: { eq: "blogs" }, extension: { eq: "md" } }
       sort: { fields: childMarkdownRemark___frontmatter___date, order: DESC }
     ) {
       nodes {
