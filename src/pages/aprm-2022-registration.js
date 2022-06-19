@@ -29,7 +29,6 @@ const validationSchema = Yup.object({
 })
 
 export default function Aprm() {
-  // const { state, dispatch } = useContext(UserContext)
   const [qr, setQr] = useState()
 
   const handleSubmit = async values => {
