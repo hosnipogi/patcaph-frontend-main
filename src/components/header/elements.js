@@ -25,7 +25,7 @@ export const Banner = styled.div`
 `
 
 export const Nav = styled.div`
-  ${tw`top-0 z-30 z-50 block w-full transition-all duration-75 ease-linear shadow-lg hover:bg-gray-100 hover:bg-opacity-100 md:px-10`}
+  ${tw`top-0 z-50 block w-full transition-all duration-75 ease-linear shadow-lg hover:bg-gray-100 hover:bg-opacity-100 md:px-10`}
   ${({ path }) =>
     path === "/"
       ? tw`fixed bg-black lg:absolute lg:bg-opacity-50`

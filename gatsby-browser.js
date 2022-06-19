@@ -20,6 +20,7 @@ import { Windmill } from "@windmill/react-ui"
 import "./src/styles/main.css"
 
 export const wrapPageElement = ({ element, props }) => {
+  console.log({ props })
   if (element.key !== "/404.html") {
     return <Layout {...props}>{element}</Layout>
   }

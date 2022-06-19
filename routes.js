@@ -7,8 +7,8 @@ module.exports = [
     showInFooter: true,
   },
   {
-    name: "Articles",
-    path: "/articles",
+    name: "Blog",
+    path: "/blog",
     showInHeader: true,
     showInFooter: true,
   },
@@ -29,16 +29,6 @@ module.exports = [
     path: "/about",
     showInHeader: true,
     showInFooter: true,
-    // subroutes: [
-    //   {
-    //     name: "Message from PATCA chairman",
-    //     path: "/about/chairman",
-    //   },
-    //   {
-    //     name: "Message from the master Developer",
-    //     path: "/about/developer",
-    //   },
-    // ],
   },
   {
     name: "Contact Us",
@@ -62,12 +52,12 @@ module.exports = [
     name: "Data Privacy Policy",
     path: "/privacy",
     showInHeader: false,
-    showInFooter: true,
+    showInFooter: false,
   },
   {
     name: "Terms and Conditions",
     path: "/terms",
     showInHeader: false,
-    showInFooter: true,
+    showInFooter: false,
   },
 ]

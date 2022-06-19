@@ -12,7 +12,7 @@ import { DASHBOARD } from "../../lib/config/URLs"
 
 import { MenuIcon } from "../icons"
 import { FiLogIn, FiLogOut } from "react-icons/fi"
-import { IoIosAirplane } from "react-icons/io"
+// import { IoIosAirplane } from "react-icons/io"
 import { RiArticleLine } from "react-icons/ri"
 import { GrGallery } from "react-icons/gr"
 import { FaRegCalendarAlt } from "react-icons/fa"
@@ -104,7 +104,7 @@ const Nav = ({ path, routes }) => {
                       key={route.name}
                       to={route.path}
                     >
-                      <div className="">
+                      <div>
                         {generateIcon(route.path)}
                         <span>{route.name}</span>
                         {route.subroutes && (
@@ -121,95 +121,100 @@ const Nav = ({ path, routes }) => {
             </div>
             <hr />
             <div className="nav__main__desktop__user">
-              {user ? (
-                <>
-                  <span className="nav__main__desktop__user__email">
-                    {user.email}
-                  </span>
-                  <div className="nav__main__desktop__user__submenu">
-                    {user.hasProfile ? (
+              {
+                user ? (
+                  <>
+                    <span className="nav__main__desktop__user__email">
+                      {user.email}
+                    </span>
+                    <div className="nav__main__desktop__user__submenu">
+                      {user.hasProfile ? (
+                        <a
+                          className="nav__main__desktop__user__submenu__link"
+                          href={DASHBOARD}
+                        >
+                          <FiLogIn className="nav__main__desktop__user__submenu__link__icon" />
+                          <span className="nav__main__desktop__user__submenu__link__text">
+                            Dashboard
+                          </span>
+                        </a>
+                      ) : (
+                        <Link
+                          className="nav__main__desktop__user__submenu__link"
+                          to="/profile"
+                        >
+                          <FiLogIn className="nav__main__desktop__user__submenu__link__icon" />
+                          <span className="nav__main__desktop__user__submenu__link__text">
+                            Profile
+                          </span>
+                        </Link>
+                      )}
                       <a
                         className="nav__main__desktop__user__submenu__link"
-                        href={DASHBOARD}
+                        onClick={e => {
+                          e.preventDefault()
+                          console.log(e)
+                          new Api({
+                            url: LOGOUT,
+                            method: "post",
+                          })
+                            .fetch()
+                            .then(() => {
+                              dispatch({
+                                type: "SET_USER",
+                                payload: null,
+                              })
+                              dispatch({
+                                type: "SET_LOGIN_STATUS",
+                                payload: false,
+                              })
+                              setTimeout(() => navigate("/"), 1000)
+                            })
+                            .catch(console.log)
+                        }}
                       >
-                        <FiLogIn className="nav__main__desktop__user__submenu__link__icon" />
+                        <FiLogOut className="nav__main__desktop__user__submenu__link__icon" />
                         <span className="nav__main__desktop__user__submenu__link__text">
-                          Dashboard
+                          Logout
                         </span>
                       </a>
-                    ) : (
-                      <Link
-                        className="nav__main__desktop__user__submenu__link"
-                        to="/profile"
-                      >
-                        <FiLogIn className="nav__main__desktop__user__submenu__link__icon" />
-                        <span className="nav__main__desktop__user__submenu__link__text">
-                          Profile
-                        </span>
-                      </Link>
-                    )}
-                    <a
-                      className="nav__main__desktop__user__submenu__link"
-                      onClick={e => {
-                        e.preventDefault()
-                        console.log(e)
-                        new Api({
-                          url: LOGOUT,
-                          method: "post",
-                        })
-                          .fetch()
-                          .then(() => {
-                            dispatch({
-                              type: "SET_USER",
-                              payload: null,
-                            })
-                            dispatch({
-                              type: "SET_LOGIN_STATUS",
-                              payload: false,
-                            })
-                            setTimeout(() => navigate("/"), 1000)
-                          })
-                          .catch(console.log)
-                      }}
-                    >
-                      <FiLogOut className="nav__main__desktop__user__submenu__link__icon" />
-                      <span className="nav__main__desktop__user__submenu__link__text">
-                        Logout
-                      </span>
-                    </a>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <span className="nav__main__desktop__user__email">
-                    ATC PORTAL{" "}
-                    <span role="img" className="ml-1" aria-label="Philippines">
-                      🇵🇭
-                    </span>{" "}
-                  </span>
+                    </div>
+                  </>
+                ) : (
+                  <Link to="/Ifatca">
+                    <div className="text-blue-600">IFATCA 2022</div>
+                  </Link>
+                )
+                // <>
+                //   <span className="nav__main__desktop__user__email">
+                //     ATC PORTAL{" "}
+                //     <span role="img" className="ml-1" aria-label="Philippines">
+                //       🇵🇭
+                //     </span>{" "}
+                //   </span>
 
-                  <div className="nav__main__desktop__user__submenu">
-                    <Link
-                      className="nav__main__desktop__user__submenu__link"
-                      to="/login"
-                    >
-                      <FiLogIn className="nav__main__desktop__user__submenu__link__icon" />
-                      <span className="nav__main__desktop__user__submenu__link__text">
-                        Login
-                      </span>
-                    </Link>
-                    <Link
-                      className="nav__main__desktop__user__submenu__link"
-                      to="/register"
-                    >
-                      <IoIosAirplane className="nav__main__desktop__user__submenu__link__icon" />
-                      <span className="nav__main__desktop__user__submenu__link__text">
-                        Register
-                      </span>
-                    </Link>
-                  </div>
-                </>
-              )}
+                //   <div className="nav__main__desktop__user__submenu">
+                //     <Link
+                //       className="nav__main__desktop__user__submenu__link"
+                //       to="/login"
+                //     >
+                //       <FiLogIn className="nav__main__desktop__user__submenu__link__icon" />
+                //       <span className="nav__main__desktop__user__submenu__link__text">
+                //         Login
+                //       </span>
+                //     </Link>
+                //     <Link
+                //       className="nav__main__desktop__user__submenu__link"
+                //       to="/register"
+                //     >
+                //       <IoIosAirplane className="nav__main__desktop__user__submenu__link__icon" />
+                //       <span className="nav__main__desktop__user__submenu__link__text">
+                //         Register
+                //       </span>
+                //     </Link>
+                //   </div>
+                // </>
+              }
             </div>
           </div>
         </nav>

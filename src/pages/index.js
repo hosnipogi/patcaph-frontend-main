@@ -8,6 +8,12 @@ import Img from "gatsby-image"
 import WhatWeDo from "../components/home/whatWeDo"
 import Loading from "../components/loading"
 
+const YOUTUBE_VID_IDS = ["g48AqQu2mPs", "H8FKgulJmGw", "AF9CX6YDp5I"]
+const FBPOSTS = [
+  "https://www.facebook.com/plugins/video.php?&href=https%3A%2F%2Fwww.facebook.com%2FDOTrPH%2Fvideos%2F1154092472068446%2F&show_text=true",
+  "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3890168947762788&show_text=false",
+  "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3877104149069268&show_text=true",
+]
 const Landing = loadable(() => import("../components/home/landing"))
 const VideoPlayer = loadable(() => import("../components/videoPlayer"))
 const pStyles = ""
@@ -15,9 +21,8 @@ const pStyles = ""
 const IndexPage = ({ data }) => {
   const { tower, articles } = data
   const latestNews = articles.nodes[0].childMarkdownRemark
-  const ytVidIds = ["g48AqQu2mPs", "H8FKgulJmGw", "AF9CX6YDp5I"]
-  const [vidId, setVidId] = useState(ytVidIds[0])
-  console.log({ vidId, setVidId, VideoPlayer })
+  const [vidId, setVidId] = useState(YOUTUBE_VID_IDS[0])
+
   return (
     <>
       <SEO title="Home" />
@@ -135,16 +140,16 @@ const IndexPage = ({ data }) => {
         <hr className="mb-6" />
         <div className="videos">
           <VideoPlayer url={`https://www.youtube.com/watch?v=${vidId}`} />
-          <div className="flex flex-row justify-between">
-            {ytVidIds.map(id => (
-              <img
-                key={id}
-                src={`https://img.youtube.com/vi/${id}/sddefault.jpg`}
-                onClick={() =>
-                  setVidId(`https://www.youtube.com/watch?v=${id}`)
-                }
-                className="w-1/3 px-1 cursor-pointer md:px-2"
-              />
+          <div className="flex justify-between gap-4">
+            {YOUTUBE_VID_IDS.map(id => (
+              <div key={id} className="w-1/3 cursor-pointer">
+                <img
+                  src={`https://img.youtube.com/vi/${id}/sddefault.jpg`}
+                  onClick={() =>
+                    setVidId(`https://www.youtube.com/watch?v=${id}`)
+                  }
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -159,42 +164,24 @@ const IndexPage = ({ data }) => {
                 rel="noreferrer"
                 className="text-blue-500 hover:underline"
               >
-                facebook
+                Facebook
               </a>
             </p>
           </div>
-          <div className="flex flex-col justify-between mt-4 flexitems-center lg:flex-row lg:items-start">
-            <iframe
-              className="flex-1"
-              src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3890168947762788&show_text=false&width=500"
-              // width="500"
-              height="495"
-              // style="border:none;overflow:hidden"
-              scrolling="no"
-              frameBorder="0"
-              allowFullScreen={true}
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            ></iframe>
-            <iframe
-              className="flex-1"
-              src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3879193922193624&show_text=true&width=500"
-              // width="500"
-              height="495"
-              scrolling="no"
-              frameBorder="0"
-              allowFullScreen={true}
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            ></iframe>
-            <iframe
-              className="flex-1"
-              src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPATCA1962%2Fposts%2F3877104149069268&show_text=true&width=500"
-              // width="500"
-              height="495"
-              scrolling="no"
-              frameBorder="0"
-              allowFullScreen={true}
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            ></iframe>
+          <div className="flex flex-col justify-between gap-4 mt-4 lg:flex-row lg:items-start">
+            {FBPOSTS.map(src => (
+              <div key={src} className="flex-1">
+                <iframe
+                  src={src}
+                  width="100%"
+                  height="495"
+                  scrolling="no"
+                  frameBorder="0"
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  allowFullScreen={true}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
