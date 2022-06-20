@@ -8,6 +8,7 @@ import Submit from "../components/elements/forms/Submit"
 // import Api from "../lib/services/api"
 // import { DASHBOARD, LOGIN } from "../lib/config/URLs"
 import SEO from "../components/seo"
+import { Card } from "@windmill/react-ui"
 import QRCode from "react-qr-code"
 
 const initialValues = {
@@ -25,15 +26,18 @@ const validationSchema = Yup.object({
   firstname: Yup.string().required("Required"),
   middlename: Yup.string(),
   surname: Yup.string().required("Required"),
-  association: Yup.string(),
+  contactNumber: Yup.string().required("Required"),
+  association: Yup.string().required("Required"),
 })
 
 export default function Aprm() {
   const [qr, setQr] = useState()
+  const [jsonValues, setJsonValues] = useState({})
 
   const handleSubmit = async values => {
     const json = JSON.stringify(values)
     setQr(json)
+    setJsonValues(values)
   }
 
   return (
@@ -76,22 +80,26 @@ export default function Aprm() {
                     />
                   </div>
                   <div className="flex flex-col md:flex-row md:gap-4">
-                    <FormControl
-                      control="input"
-                      type="email"
-                      name="email"
-                      label="Email"
-                      placeholder="Email"
-                      formik={formik}
-                    />
-                    <FormControl
-                      control="input"
-                      type="tel"
-                      name="contactNumber"
-                      label="Whatsapp Number"
-                      placeholder="915 123 4567"
-                      formik={formik}
-                    />
+                    <div className="w-7/12">
+                      <FormControl
+                        control="input"
+                        type="email"
+                        name="email"
+                        label="Email"
+                        placeholder="Email"
+                        formik={formik}
+                      />
+                    </div>
+                    <div className="w-5/12">
+                      <FormControl
+                        control="input"
+                        type="tel"
+                        name="contactNumber"
+                        label="Whatsapp"
+                        placeholder="915 123 4567"
+                        formik={formik}
+                      />
+                    </div>
                   </div>
                   <FormControl
                     control="input"
@@ -112,8 +120,47 @@ export default function Aprm() {
           </Formik>
         ) : (
           <div>
-            <h5 className="mb-4">Thank you for registering</h5>
-            <QRCode value={qr} />
+            <h5 className="mb-4">See you at APRM 2022!</h5>
+            <Card className="p-8 shadow-xl">
+              <div className="flex flex-col items-center gap-8 md:items-start md:flex-row ">
+                <div>
+                  <QRCode value={qr} style={{ objectFit: "cover" }} />
+                </div>
+                <div>
+                  <div style={{ fontFamily: "monospace" }}>
+                    <p>
+                      Email:{" "}
+                      <span className="font-bold">{jsonValues.email}</span>
+                    </p>
+                    <p>
+                      Full Name:{" "}
+                      <span className="font-bold">{`${jsonValues.firstname} ${jsonValues.middlename} ${jsonValues.surname}`}</span>
+                    </p>
+                    <p>
+                      Whatsapp:{" "}
+                      <span className="font-bold">
+                        {jsonValues.contactNumber}
+                      </span>
+                    </p>
+                    <p>
+                      ATC Association:{" "}
+                      <span className="font-bold">
+                        {jsonValues.association}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <hr className="my-4" />
+              <div>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Praesentium atque nihil dignissimos labore sed pariatur veniam
+                  quibusdam cum delectus itaque aliquam deserunt tempore ipsum,
+                  aperiam sunt adipisci alias numquam corrupti.
+                </p>
+              </div>
+            </Card>
           </div>
         )}
       </div>
