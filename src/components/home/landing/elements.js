@@ -11,9 +11,9 @@ export const BGOverlay = styled.section`
     width: 100%;
     z-index: 2;
     background-image: radial-gradient(
-      circle at 70%,
-      rgb(11 10 31 / 0.1) 0,
-      rgb(11 11 23 / 85%) 65%
+      circle at 50%,
+      rgb(11 10 31 / 0%) 0,
+      rgb(11 11 23 / 85%) 90%
     );
   }
 `
